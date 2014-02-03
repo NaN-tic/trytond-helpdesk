@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!-- This file is part of the helpdesk module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full
+copyright notices and license terms. -->
+<form string="Helpdesk">
+    <label name="name"/>
+    <field name="name" colspan="3"/>
+    <newline/>
+    <group col="4" colspan="2" id="kind">
+        <label name="kind"/>
+        <field name="kind"/>
+        <label name="date"/>
+        <field name="date"/>
+    </group>
+    <label name="priority"/>
+    <field name="priority"/>
+    <notebook colspan="4">
+        <page string="General Information" id="general" col="6">
+            <label name="employee"/>
+            <field name="employee"/>
+            <label name="unread"/>
+            <field name="unread"/>
+            <label name="num_attach"/>
+            <field name="num_attach"/>
+            <label name="party"/>
+            <field name="party"/>
+            <label name="contact"/>
+            <field name="contact"/>
+            <label name="email_from"/>
+            <field name="email_from"/>
+            <newline/>
+            <field name="talks" colspan="3"
+                view_ids="helpdesk.helpdesk_talk_view2_tree"/>
+            <group col="2" colspan="3" id="message" yfill="1" yexpand="1">
+                <button string="Add Last Mail for Replying" name="add_reply" colspan="2"/>
+                <newline/>
+                <field name="message" colspan="2"/>
+                <newline/>
+                    <button string="Send Email" name="talk_email"/>
+                    <button string="Add note" name="talk_note"/>
+            </group>
+            <group col="8" colspan="6" id="state_buttons">
+                <button string="Open" name="open"/>
+                <button string="Pending" name="pending"/>
+                <button string="Reset to Draft" name="draft"/>
+                <button string="Close" name="done"/>
+            </group>
+        </page>
+        <page string="Related Documents" id="documents">
+        </page>
+        <page string="Attachments" id="attachments">
+            <field name="attachments" colspan="6"/>
+        </page>
+        <page string="Extra Information" id="extra">
+            <label name="create_date"/>
+            <field name="create_date"/>
+            <label name="closed_date"/>
+            <field name="closed_date"/>
+            <label name="email_cc"/>
+            <field name="email_cc"/>
+        </page>
+        <page string="Log" id="log" col="8">
+            <field name="logs"
+                view_ids="helpdesk.helpdesk_log_view_tree"/>
+        </page>
+    </notebook>
+    <label name="state"/>
+    <field name="state"/>
+</form>

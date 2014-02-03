@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!-- This file is part of the helpdesk module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full
+copyright notices and license terms. -->
+<tryton>
+    <data>
+        <!-- Groups -->
+        <record model="res.group" id="group_helpdesk_manager">
+            <field name="name">Helpdesk Manager</field>
+        </record>
+        <record model="res.user-res.group" id="user_admin_group_helpdesk_manager">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="group_helpdesk_manager"/>
+        </record>
+
+        <!-- helpdesk -->
+        <record model="ir.ui.view" id="helpdesk_view_form">
+            <field name="model">helpdesk</field>
+            <field name="type">form</field>
+            <field name="name">helpdesk_form</field>
+        </record>
+        <record model="ir.ui.view" id="helpdesk_view_tree">
+            <field name="model">helpdesk</field>
+            <field name="type">tree</field>
+            <field name="name">helpdesk_tree</field>
+        </record>
+        <record model="ir.action.act_window" id="act_helpdesk">
+            <field name="name">Helpdesks</field>
+            <field name="res_model">helpdesk</field>
+            <field name="domain"></field>
+            <field name="context">{'kind': 'generic'}</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_helpdesk_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="helpdesk_view_tree"/>
+            <field name="act_window" ref="act_helpdesk"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_helpdesk_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="helpdesk_view_form"/>
+            <field name="act_window" ref="act_helpdesk"/>
+        </record>
+        <menuitem action="act_helpdesk" id="menu_helpdesk"/>
+        <record model="ir.ui.menu-res.group" id="menu_sale_helpdesk_group_sale_helpdesk">
+            <field name="menu" ref="menu_helpdesk"/>
+            <field name="group" ref="group_helpdesk_manager"/>
+        </record>
+
+        <!-- helpdesk.talk -->
+        <record model="ir.ui.view" id="helpdesk_talk_view_form">
+            <field name="model">helpdesk.talk</field>
+            <field name="type">form</field>
+            <field name="name">helpdesk_talk_form</field>
+        </record>
+        <record model="ir.ui.view" id="helpdesk_talk_view_tree">
+            <field name="model">helpdesk.talk</field>
+            <field name="type">tree</field>
+            <field name="name">helpdesk_talk_tree</field>
+        </record>
+        <record model="ir.ui.view" id="helpdesk_talk_view2_tree">
+            <field name="model">helpdesk.talk</field>
+            <field name="type">tree</field>
+            <field name="name">helpdesk_talk_tree2</field>
+        </record>
+
+        <!-- helpdesk.log -->
+        <record model="ir.ui.view" id="helpdesk_log_view_form">
+            <field name="model">helpdesk.log</field>
+            <field name="type">form</field>
+            <field name="name">helpdesk_log_form</field>
+        </record>
+        <record model="ir.ui.view" id="helpdesk_log_view_tree">
+            <field name="model">helpdesk.log</field>
+            <field name="type">tree</field>
+            <field name="name">helpdesk_log_tree</field>
+        </record>
+
+        <!-- Access Helpdesk -->
+        <record model="ir.model.access" id="access_group_helpdesk">
+            <field name="model" search="[('model', '=', 'helpdesk')]"/>
+            <field name="group" ref="group_helpdesk_manager"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+        <record model="ir.model.access" id="access_helpdesk_talk_manager">
+            <field name="model" search="[('model', '=', 'helpdesk.talk')]"/>
+            <field name="group" ref="group_helpdesk_manager"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+        <record model="ir.model.access" id="access_group_helpdesk_log">
+            <field name="model" search="[('model', '=', 'helpdesk.log')]"/>
+            <field name="group" ref="group_helpdesk_manager"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+    </data>
+</tryton>
