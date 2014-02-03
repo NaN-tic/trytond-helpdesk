@@ -1,0 +1,371 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "error:helpdesk:"
+msgid "Add a message before send an email or note!"
+msgstr "Añada un mensaje antes de enviar correo o añadir una nota"
+
+msgctxt "error:helpdesk:"
+msgid "Closed"
+msgstr "Cerrado"
+
+msgctxt "error:helpdesk:"
+msgid "Drafted"
+msgstr "A borrador"
+
+msgctxt "error:helpdesk:"
+msgid "No E-Mail ID Found for your Company address!"
+msgstr ""
+"No se ha encontrado ningún correo electrónico en la dirección de su empresa."
+
+msgctxt "error:helpdesk:"
+msgid "Not valid from email!"
+msgstr "Correo electrónico no válido."
+
+msgctxt "error:helpdesk:"
+msgid "Not valid recepients email!"
+msgstr "Correo electrónico  de los observadores no válidos."
+
+msgctxt "error:helpdesk:"
+msgid "Opened"
+msgstr "Abierto"
+
+msgctxt "error:helpdesk:"
+msgid "Pending"
+msgstr "Pendientes"
+
+msgctxt "error:helpdesk:"
+msgid "Send"
+msgstr "Enviar"
+
+msgctxt "error:helpdesk:"
+msgid "Wrong connection to SMTP server. Email have not sent."
+msgstr "No se ha podido conectar al servidor SMTP. Correo no enviado"
+
+msgctxt "error:helpdesk:"
+msgid ""
+"You must define a responsible user for this helpdesk in order to use this "
+"action!"
+msgstr "Seleccione un responsable de este tiquet de soporte."
+
+msgctxt "error:helpdesk:"
+msgid "You must put a party email to use this action!"
+msgstr ""
+"Selecciona un correo electrónico del tercero para ejecutar esta acción."
+
+msgctxt "error:helpdesk:"
+msgid "You must select a employee in yours user preferences!"
+msgstr "Seleccione un empleado en sus preferencias."
+
+msgctxt "field:helpdesk,attachments:"
+msgid "Attachments"
+msgstr "Adjuntos"
+
+msgctxt "field:helpdesk,closed_date:"
+msgid "Closed"
+msgstr "Cerrado"
+
+msgctxt "field:helpdesk,contact:"
+msgid "Contact"
+msgstr "Contacto"
+
+msgctxt "field:helpdesk,create_date:"
+msgid "Created"
+msgstr "Creado"
+
+msgctxt "field:helpdesk,create_uid:"
+msgid "Create User"
+msgstr "Usuario de creación"
+
+msgctxt "field:helpdesk,date:"
+msgid "Date"
+msgstr "Fecha"
+
+msgctxt "field:helpdesk,email_cc:"
+msgid "CC"
+msgstr "CC"
+
+msgctxt "field:helpdesk,email_from:"
+msgid "Email"
+msgstr "Email"
+
+msgctxt "field:helpdesk,employee:"
+msgid "Responsible"
+msgstr "Responsable"
+
+msgctxt "field:helpdesk,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:helpdesk,kind:"
+msgid "Kind"
+msgstr "Clase"
+
+msgctxt "field:helpdesk,last_talk:"
+msgid "Last Talk"
+msgstr "Última conversación"
+
+msgctxt "field:helpdesk,logs:"
+msgid "Logs Helpdesk"
+msgstr "Logs"
+
+msgctxt "field:helpdesk,message:"
+msgid "Message"
+msgstr "Mensaje"
+
+msgctxt "field:helpdesk,message_id:"
+msgid "Message ID"
+msgstr "Mensaje ID"
+
+msgctxt "field:helpdesk,name:"
+msgid "Description"
+msgstr "Descripción"
+
+msgctxt "field:helpdesk,num_attach:"
+msgid "Attachments"
+msgstr "Adjuntos"
+
+msgctxt "field:helpdesk,party:"
+msgid "Party"
+msgstr "Terceros"
+
+msgctxt "field:helpdesk,priority:"
+msgid "Priority"
+msgstr "Prioridad"
+
+msgctxt "field:helpdesk,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:helpdesk,state:"
+msgid "Status"
+msgstr "Estado"
+
+msgctxt "field:helpdesk,talks:"
+msgid "Communication"
+msgstr "Comunicación"
+
+msgctxt "field:helpdesk,unread:"
+msgid "Unread"
+msgstr "No leído"
+
+msgctxt "field:helpdesk,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:helpdesk,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "field:helpdesk.log,create_date:"
+msgid "Create Date"
+msgstr "Fecha de creación"
+
+msgctxt "field:helpdesk.log,create_uid:"
+msgid "Create User"
+msgstr "Usuario de creación"
+
+msgctxt "field:helpdesk.log,date:"
+msgid "Date"
+msgstr "Fecha"
+
+msgctxt "field:helpdesk.log,helpdesk:"
+msgid "Helpdesk"
+msgstr "Soporte"
+
+msgctxt "field:helpdesk.log,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:helpdesk.log,name:"
+msgid "Action"
+msgstr "Acción"
+
+msgctxt "field:helpdesk.log,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:helpdesk.log,user:"
+msgid "User"
+msgstr "Usuario"
+
+msgctxt "field:helpdesk.log,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:helpdesk.log,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "field:helpdesk.talk,create_date:"
+msgid "Create Date"
+msgstr "Fecha de creación"
+
+msgctxt "field:helpdesk.talk,create_uid:"
+msgid "Create User"
+msgstr "Usuario de creación"
+
+msgctxt "field:helpdesk.talk,date:"
+msgid "Date"
+msgstr "Fecha"
+
+msgctxt "field:helpdesk.talk,display_text:"
+msgid "Display Text"
+msgstr "Mostrar texto"
+
+msgctxt "field:helpdesk.talk,email:"
+msgid "email"
+msgstr "Correo electrónico"
+
+msgctxt "field:helpdesk.talk,helpdesk:"
+msgid "Helpdesk"
+msgstr "Soporte"
+
+msgctxt "field:helpdesk.talk,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:helpdesk.talk,message:"
+msgid "Message"
+msgstr "Mensaje"
+
+msgctxt "field:helpdesk.talk,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:helpdesk.talk,unread:"
+msgid "Unread"
+msgstr "No leído"
+
+msgctxt "field:helpdesk.talk,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:helpdesk.talk,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "model:helpdesk,name:"
+msgid "Helpdesk"
+msgstr "Soporte"
+
+msgctxt "model:helpdesk.log,name:"
+msgid "Helpdesk Log"
+msgstr "Log de soporte"
+
+msgctxt "model:helpdesk.talk,name:"
+msgid "Helpdesk Talk"
+msgstr "Conversación de soporte de proyectos"
+
+msgctxt "model:ir.action,name:act_helpdesk"
+msgid "Helpdesk"
+msgstr "Soporte"
+
+msgctxt "model:ir.ui.menu,name:menu_helpdesk"
+msgid "Helpdesk"
+msgstr "Soporte"
+
+msgctxt "model:res.group,name:group_helpdesk_manager"
+msgid "Helpdesk Manager"
+msgstr "Gestor de soporte"
+
+msgctxt "selection:helpdesk,kind:"
+msgid "Generic"
+msgstr "Genérico"
+
+msgctxt "selection:helpdesk,priority:"
+msgid "1-Important"
+msgstr "1-Importante"
+
+msgctxt "selection:helpdesk,priority:"
+msgid "2-High"
+msgstr "2-Alto"
+
+msgctxt "selection:helpdesk,priority:"
+msgid "3-Normal"
+msgstr "3-Normal"
+
+msgctxt "selection:helpdesk,priority:"
+msgid "4-Low"
+msgstr "4-Bajo"
+
+msgctxt "selection:helpdesk,state:"
+msgid "Done"
+msgstr "Realizado"
+
+msgctxt "selection:helpdesk,state:"
+msgid "Draft"
+msgstr "Borrador"
+
+msgctxt "selection:helpdesk,state:"
+msgid "Open"
+msgstr "Abrir"
+
+msgctxt "selection:helpdesk,state:"
+msgid "Pending"
+msgstr "Pendientes"
+
+msgctxt "view:helpdesk.log:"
+msgid "Helpdesk Logs"
+msgstr "Logs de soporte"
+
+msgctxt "view:helpdesk.talk:"
+msgid "Helpdesk History"
+msgstr "Historia de soporte"
+
+msgctxt "view:helpdesk.talk:"
+msgid "Helpdesk Talk"
+msgstr "Conversación de soporte de proyectos"
+
+msgctxt "view:helpdesk:"
+msgid "Add Last Mail for Replying"
+msgstr "Añade último correo para contestar"
+
+msgctxt "view:helpdesk:"
+msgid "Add note"
+msgstr "Añadir nota"
+
+msgctxt "view:helpdesk:"
+msgid "Attachments"
+msgstr "Adjuntos"
+
+msgctxt "view:helpdesk:"
+msgid "Close"
+msgstr "Cerrar"
+
+msgctxt "view:helpdesk:"
+msgid "Extra Information"
+msgstr "Información extra"
+
+msgctxt "view:helpdesk:"
+msgid "General Information"
+msgstr "Información general"
+
+msgctxt "view:helpdesk:"
+msgid "Helpdesk"
+msgstr "Soporte"
+
+msgctxt "view:helpdesk:"
+msgid "Log"
+msgstr "Log"
+
+msgctxt "view:helpdesk:"
+msgid "Open"
+msgstr "Abrir"
+
+msgctxt "view:helpdesk:"
+msgid "Pending"
+msgstr "Pendientes"
+
+msgctxt "view:helpdesk:"
+msgid "Related Documents"
+msgstr "Documentos relacionados"
+
+msgctxt "view:helpdesk:"
+msgid "Reset to Draft"
+msgstr "Restaurar a borrador"
+
+msgctxt "view:helpdesk:"
+msgid "Send Email"
+msgstr "Enviar correo electrónico"
