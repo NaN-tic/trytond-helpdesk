@@ -258,11 +258,11 @@ msgid "Helpdesk Talk"
 msgstr "Conversa de suport"
 
 msgctxt "model:ir.action,name:act_helpdesk"
-msgid "Helpdesk"
+msgid "Helpdesks"
 msgstr "Suport"
 
 msgctxt "model:ir.ui.menu,name:menu_helpdesk"
-msgid "Helpdesk"
+msgid "Helpdesks"
 msgstr "Suport"
 
 msgctxt "model:res.group,name:group_helpdesk_manager"
@@ -299,7 +299,7 @@ msgstr "Esborrany"
 
 msgctxt "selection:helpdesk,state:"
 msgid "Open"
-msgstr "Per obrir"
+msgstr "Oberts"
 
 msgctxt "selection:helpdesk,state:"
 msgid "Pending"

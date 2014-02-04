@@ -256,14 +256,14 @@ msgstr "Log de soporte"
 
 msgctxt "model:helpdesk.talk,name:"
 msgid "Helpdesk Talk"
-msgstr "Conversación de soporte de proyectos"
+msgstr "Conversación de soporte"
 
 msgctxt "model:ir.action,name:act_helpdesk"
-msgid "Helpdesk"
+msgid "Helpdesks"
 msgstr "Soporte"
 
 msgctxt "model:ir.ui.menu,name:menu_helpdesk"
-msgid "Helpdesk"
+msgid "Helpdesks"
 msgstr "Soporte"
 
 msgctxt "model:res.group,name:group_helpdesk_manager"
@@ -316,7 +316,7 @@ msgstr "Historia de soporte"
 
 msgctxt "view:helpdesk.talk:"
 msgid "Helpdesk Talk"
-msgstr "Conversación de soporte de proyectos"
+msgstr "Conversación de soporte"
 
 msgctxt "view:helpdesk:"
 msgid "Add Last Mail for Replying"
