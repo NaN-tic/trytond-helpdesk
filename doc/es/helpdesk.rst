@@ -44,6 +44,16 @@ Un usuario del grupo de soporte de cada sección, podrá asignar cada
 tique que entre en el sistema a un empleado. Este usuario será el encargado
 de asignar los tiques que vayan llegando con el empleado a realizar.
 
+.. inheritref:: helpdesk/helpdesk:section:cambiar_de_seccion
+
+Cambiar de sección
+==================
+
+En los tiques se dispone de una acción para ejecutar un asistente para cambiar el tique 
+de sección (según las secciones que disponga).
+Para cambiar de sección deberemos seleccionar a que sección queremos mover el tiquet. También
+podemos seleccionar el empleado a que se asignará el tique.
+
 .. inheritref:: helpdesk/helpdesk:section:recepcion_de_correos
 
 Recepción de correos
