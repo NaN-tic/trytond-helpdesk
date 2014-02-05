@@ -226,26 +226,26 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         return len(attachments)
 
     def on_change_party(self):
-        Address = Pool().get('party.address')
-        Contact = Pool().get('party.contact_mechanism')
-        res = {}
+        pool = Pool()
+        Address = pool.get('party.address')
+        Contact = pool.get('party.contact_mechanism')
+
+        changes = {}
         if self.party:
             addresses = Address.search([('party', '=', self.party)])
             for address in addresses:
-                res['contact'] = address.id
+                changes['contact'] = address.id
                 if address.email and not self.email_from:
-                    res['email_from'] = address.email
+                    changes['email_from'] = address.email
                 break
-            contacts = Contact.search([('party', '=', self.party)])
-            if not res.get('email_from'):
-                for contact in contacts:
+            if not changes.get('email_from') and not self.email_from:
+                for contact in Contact.search([('party', '=', self.party)]):
                     if contact.type == 'email':
-                        res['email_from'] = contact.email
+                        changes['email_from'] = contact.email
                         break
-        if not res.get('contact'):
-            res['contact'] = None
-            res['email_from'] = None
-        return res
+        if not changes.get('contact'):
+            changes['contact'] = None
+        return changes
 
     @staticmethod
     def default_state():
