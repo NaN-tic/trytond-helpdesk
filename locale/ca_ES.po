@@ -258,11 +258,36 @@ msgid "Helpdesk Talk"
 msgstr "Conversa de suport"
 
 msgctxt "model:ir.action,name:act_helpdesk"
-msgid "Helpdesks"
+msgid "Helpdesk"
 msgstr "Suport"
 
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_helpdesk_domain_helpdesk_all_my"
+msgid "All"
+msgstr "Tots"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_helpdesk_domain_helpdesk_done"
+msgid "Done"
+msgstr "Realitzats"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_helpdesk_domain_helpdesk_open"
+msgid "Open"
+msgstr "Per obrir"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_helpdesk_domain_helpdesk_pending"
+msgid "Pending"
+msgstr "Pendents"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_helpdesk_domain_helpdesk_unreads"
+msgid "Unreads"
+msgstr "No llegits"
+
 msgctxt "model:ir.ui.menu,name:menu_helpdesk"
-msgid "Helpdesks"
+msgid "Helpdesk"
 msgstr "Suport"
 
 msgctxt "model:res.group,name:group_helpdesk_manager"
