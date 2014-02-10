@@ -32,6 +32,10 @@ y del usuario, como la fecha de realización.
 Secciones
 =========
 
+Se dispone del menú |menu_helpdesk| para acceder a todos los soportes. 
+
+.. |menu_helpdesk| tryref:: getmail.menu_getmail_server_form/complete_name
+
 A continuación disponéis de las diferentes secciones sobre
 la comunicación con el cliente CRM - Soporte.
 
