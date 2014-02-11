@@ -473,9 +473,9 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                     references = references.split(' ')
                 for ref in references:
                     ref = ref.strip()
-                    helpdesk = cls.search([('message_id', '=', ref)], limit=1)
-                    if helpdesk:
-                        helpdesk = helpdesk[0]
+                    helpdesks = cls.search([('message_id', '=', ref)], limit=1)
+                    if helpdesks:
+                        helpdesk = helpdesks[0]
                         break
             if not helpdesk:
                 helpdesks = cls.search([
