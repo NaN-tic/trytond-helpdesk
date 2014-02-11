@@ -105,7 +105,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         'get_unread', setter='set_unread', searcher='search_unread')
     kind = fields.Selection([
             ('generic', 'Generic'),
-            ], 'Kind', readonly=True)
+            ], 'Kind')
 
     @classmethod
     def __setup__(cls):
