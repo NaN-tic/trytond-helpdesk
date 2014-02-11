@@ -144,6 +144,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 ('pending', 'open'),
                 ('pending', 'done'),
                 ('done', 'draft'),
+                ('done', 'pending'),
                 ))
         cls._buttons.update({
                 'done': {
@@ -484,6 +485,10 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                     ])
                 if helpdesks:
                     helpdesk = helpdesks[0]
+
+            # Change pending status
+            if helpdesk:
+                cls.write([helpdesk], {'state': 'pending'})
 
             # Create a new helpdesk
             if not helpdesk:
