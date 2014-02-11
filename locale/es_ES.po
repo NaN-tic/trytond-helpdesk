@@ -100,7 +100,7 @@ msgstr "ID"
 
 msgctxt "field:helpdesk,kind:"
 msgid "Kind"
-msgstr "Clase"
+msgstr "Sección"
 
 msgctxt "field:helpdesk,last_talk:"
 msgid "Last Talk"
