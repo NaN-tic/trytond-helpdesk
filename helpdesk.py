@@ -462,6 +462,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             msgbody = message.body
             logging.getLogger('Helpdesk').info('Process email: %s' %
                 (msgeid))
+
+            #Search helpdesk by msg reference, msg in reply to or "description + email from"
             helpdesk = None
             if msgreferences or msginrepplyto:
                 references = msgreferences or msginrepplyto
@@ -476,9 +478,13 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                         helpdesk = helpdesk[0]
                         break
             if not helpdesk:
-                helpdesk = cls.search([('name', 'ilike', msgsubject)])
-                if helpdesk:
-                    helpdesk = helpdesk[0]
+                helpdesks = cls.search([
+                    ('name', 'ilike', msgsubject),
+                    ('email_from', '=', msgfrom),
+                    ])
+                if helpdesks:
+                    helpdesk = helpdesks[0]
+
             # Create a new helpdesk
             if not helpdesk:
                 party, address = GetMail.get_party_from_email(msgfrom)
