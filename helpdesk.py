@@ -475,6 +475,10 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                     if helpdesk:
                         helpdesk = helpdesk[0]
                         break
+            if not helpdesk:
+                helpdesk = cls.search([('name', 'ilike', msgsubject)])
+                if helpdesk:
+                    helpdesk = helpdesk[0]
             # Create a new helpdesk
             if not helpdesk:
                 party, address = GetMail.get_party_from_email(msgfrom)
