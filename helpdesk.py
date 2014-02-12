@@ -481,7 +481,10 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             if not helpdesk:
                 helpdesks = cls.search([
                     ('name', 'ilike', msgsubject),
-                    ('email_from', '=', msgfrom),
+                    ['OR',
+                        ('email_from', '=', msgfrom),
+                        ('email_cc', 'ilike', msgfrom),
+                        ],
                     ])
                 if helpdesks:
                     helpdesk = helpdesks[0]
