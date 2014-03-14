@@ -258,9 +258,38 @@ msgctxt "model:helpdesk.talk,name:"
 msgid "Helpdesk Talk"
 msgstr "Conversación de soporte"
 
+msgctxt "model:ir.action,name:act_all_helpdesk"
+msgid "All Helpdesk"
+msgstr ""
+
 msgctxt "model:ir.action,name:act_helpdesk"
-msgid "Helpdesk"
+msgid "Helpdesks"
 msgstr "Soporte"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_all_helpdesk_domain_helpdesk_all_my"
+msgid "All"
+msgstr "Todos"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_all_helpdesk_domain_helpdesk_done"
+msgid "Done"
+msgstr "Realizados"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_all_helpdesk_domain_helpdesk_open"
+msgid "Open"
+msgstr "Para abrir"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_all_helpdesk_domain_helpdesk_pending"
+msgid "Pending"
+msgstr "Pendientes"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_all_helpdesk_domain_helpdesk_unreads"
+msgid "Unreads"
+msgstr "No leidos"
 
 msgctxt ""
 "model:ir.action.act_window.domain,name:act_helpdesk_domain_helpdesk_all_my"
@@ -287,8 +316,12 @@ msgctxt ""
 msgid "Unreads"
 msgstr "No leidos"
 
+msgctxt "model:ir.ui.menu,name:menu_all_helpdesk"
+msgid "All Helpdesk"
+msgstr ""
+
 msgctxt "model:ir.ui.menu,name:menu_helpdesk"
-msgid "Helpdesk"
+msgid "Helpdesks"
 msgstr "Soporte"
 
 msgctxt "model:res.group,name:group_helpdesk_manager"
@@ -350,10 +383,6 @@ msgstr "Añade último correo para contestar"
 msgctxt "view:helpdesk:"
 msgid "Add note"
 msgstr "Añadir nota"
-
-msgctxt "view:helpdesk:"
-msgid "Attachments"
-msgstr "Adjuntos"
 
 msgctxt "view:helpdesk:"
 msgid "Close"
