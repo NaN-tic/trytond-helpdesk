@@ -27,6 +27,17 @@ Estados del tique
 En el historial del tique se va anotando el cambio de los estados de la conversación
 y del usuario, como la fecha de realización.
 
+.. inheritref:: helpdesk/helpdesk:section:todos_los_tique
+
+Todos los tique
+===============
+
+Si accedemos a soportes o por secciones, sólo nos mostrará los tiques que esten asignados al
+empleado del nuestro usuario (sólo veremos nuestros tiques).
+
+Para ver todos los tiques (sin la condición de empleado) deberá acceder al menú "Todos los soportes".
+Para acceder a este menú el usuario debe ser del grupo "Gestor de soporte".
+
 .. inheritref:: helpdesk/helpdesk:section:secciones
 
 Secciones
