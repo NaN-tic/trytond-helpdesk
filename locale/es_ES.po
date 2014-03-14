@@ -260,7 +260,7 @@ msgstr "Conversación de soporte"
 
 msgctxt "model:ir.action,name:act_all_helpdesk"
 msgid "All Helpdesk"
-msgstr ""
+msgstr "Todos los soportes"
 
 msgctxt "model:ir.action,name:act_helpdesk"
 msgid "Helpdesks"
@@ -318,7 +318,7 @@ msgstr "No leidos"
 
 msgctxt "model:ir.ui.menu,name:menu_all_helpdesk"
 msgid "All Helpdesk"
-msgstr ""
+msgstr "Todos los soportes"
 
 msgctxt "model:ir.ui.menu,name:menu_helpdesk"
 msgid "Helpdesks"
