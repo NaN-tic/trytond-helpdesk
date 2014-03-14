@@ -82,6 +82,63 @@ copyright notices and license terms. -->
             <field name="act_window" ref="act_helpdesk"/>
         </record>
 
+        <!-- All helpdesk -->
+        <record model="ir.action.act_window" id="act_all_helpdesk">
+            <field name="name">All Helpdesk</field>
+            <field name="res_model">helpdesk</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_all_helpdesk_form_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="helpdesk_view_tree"/>
+            <field name="act_window" ref="act_all_helpdesk"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_all_helpdesk_form_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="helpdesk_view_form"/>
+            <field name="act_window" ref="act_all_helpdesk"/>
+        </record>
+        <menuitem parent="menu_helpdesk" action="act_all_helpdesk" id="menu_all_helpdesk"/>
+        <record model="ir.ui.menu-res.group" id="menu_all_helpdesk_group_helpdesk_manager">
+            <field name="menu" ref="menu_all_helpdesk"/>
+            <field name="group" ref="group_helpdesk_manager"/>
+        </record>
+
+        <record model="ir.action.act_window.domain"
+            id="act_all_helpdesk_domain_helpdesk_unreads">
+            <field name="name">Unreads</field>
+            <field name="sequence" eval="10"/>
+            <field name="domain">[('unread','=',True)]</field>
+            <field name="act_window" ref="act_all_helpdesk"/>
+        </record>
+        <record model="ir.action.act_window.domain"
+            id="act_all_helpdesk_domain_helpdesk_pending">
+            <field name="name">Pending</field>
+            <field name="sequence" eval="20"/>
+            <field name="domain">[('state', 'in', ['pending'])]</field>
+            <field name="act_window" ref="act_all_helpdesk"/>
+        </record>
+        <record model="ir.action.act_window.domain"
+            id="act_all_helpdesk_domain_helpdesk_open">
+            <field name="name">Open</field>
+            <field name="sequence" eval="30"/>
+            <field name="domain">[('state', 'in', ['open'])]</field>
+            <field name="act_window" ref="act_all_helpdesk"/>
+        </record>
+        <record model="ir.action.act_window.domain"
+            id="act_all_helpdesk_domain_helpdesk_done">
+            <field name="name">Done</field>
+            <field name="sequence" eval="30"/>
+            <field name="domain">[('state', 'in', ['done'])]</field>
+            <field name="act_window" ref="act_all_helpdesk"/>
+        </record>
+        <record model="ir.action.act_window.domain"
+            id="act_all_helpdesk_domain_helpdesk_all_my">
+            <field name="name">All</field>
+            <field name="sequence" eval="40"/>
+            <field name="domain"></field>
+            <field name="act_window" ref="act_all_helpdesk"/>
+        </record>
+
         <!-- helpdesk.talk -->
         <record model="ir.ui.view" id="helpdesk_talk_view_form">
             <field name="model">helpdesk.talk</field>
