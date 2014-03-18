@@ -519,13 +519,16 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             helpdesk_talk.save()
             # Create a attachments
             if attachments:
+                i = 0
                 for attachment in message.attachments:
+                    fname = GetMail.get_filename(attachment[0])
                     attach = Attachment()
-                    attach.name = attachment[0]
+                    attach.name = '%s-%s' % (i, fname)
                     attach.type = 'data'
                     attach.data = attachment[1]
                     attach.resource = '%s' % (helpdesk)
                     attach.save()
+                    i += 1
         return True
 
 
