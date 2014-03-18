@@ -10,6 +10,7 @@ from trytond.model import Workflow, ModelView, ModelSQL, fields
 from trytond.pool import Pool
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
+import dateutil.tz
 import logging
 CHECK_EMAIL = False
 try:
@@ -18,6 +19,10 @@ try:
 except ImportError:
     logging.getLogger('Helpdesk').warning(
     'Unable to import emailvalid. Email validation disabled.')
+try:
+    import pytz
+except:
+    pytz = None
 
 __all__ = [
     'Helpdesk', 'HelpdeskTalk', 'HelpdeskLog',
@@ -548,7 +553,16 @@ class HelpdeskTalk(ModelSQL, ModelView):
             else '\n\t'.join(message))
 
     def get_display_text(self, name=None):
-        display = ('(' + str(self.date) + '):\n' + self.truncate_data())
+        Company = Pool().get('company.company')
+        
+        date = self.date
+        if pytz and Transaction().context.get('company'):
+            company = Company(Transaction().context['company'])
+            if company.timezone:
+                czone = pytz.timezone(company.timezone)
+                lzone = dateutil.tz.tzlocal()
+                date = date.replace(tzinfo=lzone).astimezone(czone)
+        display = ('(' + str(date) + '):\n' + self.truncate_data())
         return self.email + ' ' + display if self.email else display
 
 
