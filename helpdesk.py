@@ -11,6 +11,7 @@ from trytond.pool import Pool
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 import dateutil.tz
+import re
 import logging
 CHECK_EMAIL = False
 try:
@@ -458,8 +459,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         Attachment = pool.get('ir.attachment')
         for (_, message) in messages:
             msgeid = message.messageid
-            msgfrom = (parseaddr(message.from_addr)[1] if message.from_addr
-                else None)
+            msgfrom = msgfrom = parseaddr(re.sub('[.,;]', '', message.from_addr))[1] if message.from_addr else None
             msgcc = message.cc if not message.cc == 'None' else None
             msgreferences = message.references
             msginrepplyto = getattr(message, 'inrepplyto', None)
