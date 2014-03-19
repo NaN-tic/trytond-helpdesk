@@ -603,15 +603,20 @@ class HelpdeskTalk(ModelSQL, ModelView):
     def get_display_text(self, name=None):
         Company = Pool().get('company.company')
         
+        display = ''
+        if self.email:
+            display += self.email + ' '
         date = self.date
-        if pytz and Transaction().context.get('company'):
-            company = Company(Transaction().context['company'])
-            if company.timezone:
-                czone = pytz.timezone(company.timezone)
-                lzone = dateutil.tz.tzlocal()
-                date = date.replace(tzinfo=lzone).astimezone(czone)
-        display = ('(' + str(date) + '):\n' + self.truncate_data())
-        return self.email + ' ' + display if self.email else display
+        if date:
+            if pytz and Transaction().context.get('company'):
+                company = Company(Transaction().context['company'])
+                if company.timezone:
+                    czone = pytz.timezone(company.timezone)
+                    lzone = dateutil.tz.tzlocal()
+                    date = date.replace(tzinfo=lzone).astimezone(czone)
+            display += '(' + str(date) + ')'
+        display += ':\n' + self.truncate_data(self.description)
+        return display
 
 
 class HelpdeskLog(ModelSQL, ModelView):
