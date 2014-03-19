@@ -277,7 +277,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
 
     @staticmethod
     def default_date():
-        return datetime.now()
+        Date = Pool().get('ir.date')
+        return Date.today()
 
     @staticmethod
     def default_employee():
@@ -594,6 +595,11 @@ class HelpdeskTalk(ModelSQL, ModelView):
     def __setup__(cls):
         super(HelpdeskTalk, cls).__setup__()
         cls._order.insert(0, ('id', 'DESC'))
+
+    @staticmethod
+    def default_date():
+        Date = Pool().get('ir.date')
+        return Date.today()
 
     def truncate_data(self):
         message = self.message and self.message.split('\n') or []
