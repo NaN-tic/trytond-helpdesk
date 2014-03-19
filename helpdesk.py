@@ -639,5 +639,5 @@ class HelpdeskAttachment(ModelSQL):
     _table = 'helpdesk_attachment_rel'
     helpdesk = fields.Many2One('helpdesk', 'Helpdesk', ondelete='CASCADE',
             select=True, required=True)
-    attachment = fields.Many2One('ir.attachment', 'Move', ondelete='RESTRICT',
+    attachment = fields.Many2One('ir.attachment', 'Attachment', ondelete='RESTRICT',
             select=True, required=True)

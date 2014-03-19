@@ -58,6 +58,10 @@ msgctxt "error:helpdesk:"
 msgid "You must select a employee in yours user preferences!"
 msgstr "Seleccione un empleado en sus preferencias."
 
+msgctxt "field:helpdesk,add_attachments:"
+msgid "Add Attachments Email"
+msgstr "Añadir adjuntos en el correo"
+
 msgctxt "field:helpdesk,attachments:"
 msgid "Attachments"
 msgstr "Adjuntos"
@@ -76,7 +80,7 @@ msgstr "Creado"
 
 msgctxt "field:helpdesk,create_uid:"
 msgid "Create User"
-msgstr "Usuario de creación"
+msgstr "Usuario creación"
 
 msgctxt "field:helpdesk,date:"
 msgid "Date"
@@ -158,13 +162,45 @@ msgctxt "field:helpdesk,write_uid:"
 msgid "Write User"
 msgstr "Usuario modificación"
 
+msgctxt "field:helpdesk-ir.attachment,attachment:"
+msgid "Attachment"
+msgstr "Adjunto"
+
+msgctxt "field:helpdesk-ir.attachment,create_date:"
+msgid "Create Date"
+msgstr "Fecha creación"
+
+msgctxt "field:helpdesk-ir.attachment,create_uid:"
+msgid "Create User"
+msgstr "Usuario creación"
+
+msgctxt "field:helpdesk-ir.attachment,helpdesk:"
+msgid "Helpdesk"
+msgstr "Soporte"
+
+msgctxt "field:helpdesk-ir.attachment,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:helpdesk-ir.attachment,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:helpdesk-ir.attachment,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:helpdesk-ir.attachment,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
 msgctxt "field:helpdesk.log,create_date:"
 msgid "Create Date"
 msgstr "Fecha de creación"
 
 msgctxt "field:helpdesk.log,create_uid:"
 msgid "Create User"
-msgstr "Usuario de creación"
+msgstr "Usuario creación"
 
 msgctxt "field:helpdesk.log,date:"
 msgid "Date"
@@ -204,7 +240,7 @@ msgstr "Fecha de creación"
 
 msgctxt "field:helpdesk.talk,create_uid:"
 msgid "Create User"
-msgstr "Usuario de creación"
+msgstr "Usuario creación"
 
 msgctxt "field:helpdesk.talk,date:"
 msgid "Date"
@@ -246,9 +282,30 @@ msgctxt "field:helpdesk.talk,write_uid:"
 msgid "Write User"
 msgstr "Usuario modificación"
 
+msgctxt "help:helpdesk,add_attachments:"
+msgid ""
+"Send email attachments, first you need to add files in attachments field and"
+" after select in this list. When send email, attachemtns will be remove from"
+" this list."
+msgstr ""
+"Primero debe añadir adjuntos relacionados con el soporte y después podrá "
+"seleccionar los ficheros en esta lista para que se adjunten el correo."
+
+msgctxt "help:helpdesk,attachments:"
+msgid ""
+"Attachments fields related in this helpdesk. Remember to remove email "
+"attachments not necessary, for example, signatures, logos, etc"
+msgstr ""
+"Adjuntos relacionados con este soporte. Recuerde de eliminar los adjuntos no"
+" necesarios, por ejemplo firmas, logos, etc"
+
 msgctxt "model:helpdesk,name:"
 msgid "Helpdesk"
 msgstr "Soporte"
+
+msgctxt "model:helpdesk-ir.attachment,name:"
+msgid "Helpdesk - Attachment"
+msgstr "Soporte - Adjunto"
 
 msgctxt "model:helpdesk.log,name:"
 msgid "Helpdesk Log"
@@ -385,6 +442,10 @@ msgid "Add note"
 msgstr "Añadir nota"
 
 msgctxt "view:helpdesk:"
+msgid "Attachments"
+msgstr "Adjuntos"
+
+msgctxt "view:helpdesk:"
 msgid "Close"
 msgstr "Cerrar"
 
@@ -410,7 +471,7 @@ msgstr "Abrir"
 
 msgctxt "view:helpdesk:"
 msgid "Pending"
-msgstr "Pendientes"
+msgstr "Pendiente"
 
 msgctxt "view:helpdesk:"
 msgid "Related Documents"
@@ -423,3 +484,7 @@ msgstr "Restaurar a borrador"
 msgctxt "view:helpdesk:"
 msgid "Send Email"
 msgstr "Enviar correo electrónico"
+
+msgctxt "view:ir.attachment:"
+msgid "Attachments"
+msgstr "Adjuntos"

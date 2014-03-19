@@ -57,6 +57,10 @@ msgctxt "error:helpdesk:"
 msgid "You must select a employee in yours user preferences!"
 msgstr "Necessita seleccionar un empleat a les seves preferencies."
 
+msgctxt "field:helpdesk,add_attachments:"
+msgid "Add Attachments Email"
+msgstr "Afegir adjunts al correu"
+
 msgctxt "field:helpdesk,attachments:"
 msgid "Attachments"
 msgstr "Adjunts"
@@ -75,7 +79,7 @@ msgstr "Creat"
 
 msgctxt "field:helpdesk,create_uid:"
 msgid "Create User"
-msgstr "Usuari de creació"
+msgstr "Usuari creació"
 
 msgctxt "field:helpdesk,date:"
 msgid "Date"
@@ -157,13 +161,45 @@ msgctxt "field:helpdesk,write_uid:"
 msgid "Write User"
 msgstr "Usuari modificació"
 
+msgctxt "field:helpdesk-ir.attachment,attachment:"
+msgid "Attachment"
+msgstr "Adjunt"
+
+msgctxt "field:helpdesk-ir.attachment,create_date:"
+msgid "Create Date"
+msgstr "Data creació"
+
+msgctxt "field:helpdesk-ir.attachment,create_uid:"
+msgid "Create User"
+msgstr "Usuari creació"
+
+msgctxt "field:helpdesk-ir.attachment,helpdesk:"
+msgid "Helpdesk"
+msgstr "Suport"
+
+msgctxt "field:helpdesk-ir.attachment,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:helpdesk-ir.attachment,rec_name:"
+msgid "Name"
+msgstr "Nom"
+
+msgctxt "field:helpdesk-ir.attachment,write_date:"
+msgid "Write Date"
+msgstr "Data modificació"
+
+msgctxt "field:helpdesk-ir.attachment,write_uid:"
+msgid "Write User"
+msgstr "Usuari modificació"
+
 msgctxt "field:helpdesk.log,create_date:"
 msgid "Create Date"
 msgstr "Data de creació"
 
 msgctxt "field:helpdesk.log,create_uid:"
 msgid "Create User"
-msgstr "Usuari de creació"
+msgstr "Usuari creació"
 
 msgctxt "field:helpdesk.log,date:"
 msgid "Date"
@@ -203,7 +239,7 @@ msgstr "Data de creació"
 
 msgctxt "field:helpdesk.talk,create_uid:"
 msgid "Create User"
-msgstr "Usuari de creació"
+msgstr "Usuari creació"
 
 msgctxt "field:helpdesk.talk,date:"
 msgid "Date"
@@ -245,9 +281,30 @@ msgctxt "field:helpdesk.talk,write_uid:"
 msgid "Write User"
 msgstr "Usuari modificació"
 
+msgctxt "help:helpdesk,add_attachments:"
+msgid ""
+"Send email attachments, first you need to add files in attachments field and"
+" after select in this list. When send email, attachemtns will be remove from"
+" this list."
+msgstr ""
+"Primer afegeix adjunts en el suport i després selecciona en aquesta llista "
+"els adjunts que vol enviar amb el correu."
+
+msgctxt "help:helpdesk,attachments:"
+msgid ""
+"Attachments fields related in this helpdesk. Remember to remove email "
+"attachments not necessary, for example, signatures, logos, etc"
+msgstr ""
+"Documents relacionats amb aquest suport. Recordi d'eliminar els adjunts que "
+"no siguin necessaris (firmes, logos, etc)"
+
 msgctxt "model:helpdesk,name:"
 msgid "Helpdesk"
 msgstr "Suport"
+
+msgctxt "model:helpdesk-ir.attachment,name:"
+msgid "Helpdesk - Attachment"
+msgstr "Suport - Adjunt"
 
 msgctxt "model:helpdesk.log,name:"
 msgid "Helpdesk Log"
@@ -384,6 +441,10 @@ msgid "Add note"
 msgstr "Afegeix nota"
 
 msgctxt "view:helpdesk:"
+msgid "Attachments"
+msgstr "Adjunts"
+
+msgctxt "view:helpdesk:"
 msgid "Close"
 msgstr "Tancat"
 
@@ -409,7 +470,7 @@ msgstr "Per obrir"
 
 msgctxt "view:helpdesk:"
 msgid "Pending"
-msgstr "Pendents"
+msgstr "Pendent"
 
 msgctxt "view:helpdesk:"
 msgid "Related Documents"
@@ -422,3 +483,7 @@ msgstr "Restaura a esborrany"
 msgctxt "view:helpdesk:"
 msgid "Send Email"
 msgstr "Envia correu electrònic"
+
+msgctxt "view:ir.attachment:"
+msgid "Attachments"
+msgstr "Adjunts"
