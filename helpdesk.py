@@ -29,7 +29,7 @@ try:
 except:
     pytz = None
 
-__all__ = ['Helpdesk', 'HelpdeskTalk', 'HelpdeskLog', 'HelpdeskAttachment',]
+__all__ = ['Helpdesk', 'HelpdeskTalk', 'HelpdeskLog', 'HelpdeskAttachment']
 
 
 class Helpdesk(Workflow, ModelSQL, ModelView):
@@ -277,8 +277,14 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
 
     @staticmethod
     def default_date():
-        Date = Pool().get('ir.date')
-        return Date.today()
+        Company = Pool().get('company.company')
+
+        timezone = None
+        if Transaction().context.get('company'):
+            company = Company(Transaction().context['company'])
+            if company.timezone and pytz:
+                timezone = pytz.timezone(company.timezone)
+        return datetime.now(timezone)
 
     @staticmethod
     def default_employee():
@@ -608,7 +614,7 @@ class HelpdeskTalk(ModelSQL, ModelView):
 
     def get_display_text(self, name=None):
         Company = Pool().get('company.company')
-        
+
         display = ''
         if self.email:
             display += self.email + ' '
