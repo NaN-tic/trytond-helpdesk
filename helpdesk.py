@@ -3,13 +3,17 @@
 # copyright notices and license terms.
 from datetime import datetime
 from email import Utils
+from email import Encoders
 from email.header import Header
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
 from email.utils import parseaddr
 from trytond.model import Workflow, ModelView, ModelSQL, fields
 from trytond.pool import Pool
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
+import mimetypes
 import dateutil.tz
 import re
 import logging
@@ -401,7 +405,13 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                     for cc_address in cc_addresses:
                         if not emailvalid.check_email(cc_address):
                             cls.raise_user_error('no_recepients_valid')
-            msg = MIMEText(helpdesk.message, _charset='utf-8')
+
+            if helpdesk.add_attachments:
+                msg = MIMEMultipart()
+                msg.attach(MIMEText(helpdesk.message, _charset='utf-8'))
+            else:
+                msg = MIMEText(helpdesk.message, _charset='utf-8')
+
             msg['Subject'] = Header(helpdesk.name, 'utf-8')
             msg['From'] = from_
             msg['To'] = ', '.join(recipients)
@@ -410,8 +420,27 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             msg['Reply-to'] = server.smtp_email
             # msg['Date']     = Utils.formatdate(localtime = 1)
             msg['Message-ID'] = Utils.make_msgid()
+
             if helpdesk.message_id:
                 msg['In-Reply-To'] = helpdesk.message_id
+
+            #  Add email attachments from add attachments field
+            for attachment in helpdesk.add_attachments:
+                filename = attachment.name
+                content_type, _ = mimetypes.guess_type(filename)
+                maintype, subtype = (
+                    content_type or 'application/octet-stream'
+                    ).split('/', 1)
+
+                attach = MIMEBase(maintype, subtype)
+                attach.set_payload(attachment.data)
+                Encoders.encode_base64(attach)
+                attach.add_header(
+                    'Content-Disposition', 'attachment', filename=filename)
+                attach.add_header(
+                    'Content-Transfer-Encoding', 'base64')
+                msg.attach(attach)
+
             try:
                 server = SMTP.get_smtp_server(server)
                 server.sendmail(from_, recipients +
@@ -419,8 +448,15 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 server.quit()
             except:
                 cls.raise_user_error('smtp_error')
+
+            #  write helpdesk values
+            vals = {}
             if not helpdesk.message_id:
-                cls.write([helpdesk], {'message_id': msg.get('Message-ID')})
+                vals['message_id'] = msg.get('Message-ID')
+            if helpdesk.add_attachments:
+                vals['add_attachments'] = [('unlink_all',)]
+            if vals:
+                cls.write([helpdesk], vals)
 
     @classmethod
     @ModelView.button
