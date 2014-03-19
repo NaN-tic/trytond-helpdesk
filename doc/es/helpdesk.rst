@@ -86,3 +86,24 @@ Envío de correo
 En el tique del soporte dispondremos de las comunicaciones que se han realizado con el cliente
 (conversaciones). En una comunicación podemos que se envíe el correo electrónico o añadir
 una nota.
+
+.. inheritref:: helpdesk/helpdesk:section:adjuntos
+
+Adjuntos
+========
+
+En el tique de soporte podemos adjuntar o relacionar con adjuntos. Para más información del uso de adjuntos
+consulte el apartado de conceptos básicos.
+
+Para la recepción de correo y adjuntos en el soporte dependerá de la configuración de la cuenta de Getmail si
+se permiten la recepción de adjuntos. En el caso afirmativo, en el tique dispondrá de todos los adjuntos en la
+pestaña "Adjuntos" en el caso que el correo electrónico disponga de adjuntos.
+
+Recuerde de eliminar los adjuntos si no son necesarios que haya recibido para ahorrar espacio del disco duro (por ejemplo,
+imágenes como firmas, logos, etc que haya adjuntado el usuario).
+
+Para el envío de adjuntos, antes de enviar el correo, en la pestaña "Adjuntos" también dispone de un campo que podrá
+seleccionar los adjuntos relacionados con el tique para el envío. Los ficheros seleccionados serán añadidos en el correo
+en el momento de enviar el correo. El tiempo de envío dependerá del tamaño de los ficheros. Una vez enviado el correo,
+los adjuntos en este campo ya no estarán disponibles. Si necesita adjuntar en otra ocasión, siempre los podrá adjuntar de
+nuevo.
