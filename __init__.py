@@ -10,4 +10,5 @@ def register():
         Helpdesk,
         HelpdeskTalk,
         HelpdeskLog,
+        HelpdeskAttachment,
         module='helpdesk', type_='model')

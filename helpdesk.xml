@@ -168,6 +168,13 @@ copyright notices and license terms. -->
             <field name="name">helpdesk_log_tree</field>
         </record>
 
+        <!-- helpdesk Attachment -->
+        <record model="ir.ui.view" id="helpdesk_attachment_view_tree">
+            <field name="model">ir.attachment</field>
+            <field name="type">tree</field>
+            <field name="name">helpdesk_attachment_tree</field>
+        </record>
+
         <!-- Access Helpdesk -->
         <record model="ir.model.access" id="access_group_helpdesk">
             <field name="model" search="[('model', '=', 'helpdesk')]"/>

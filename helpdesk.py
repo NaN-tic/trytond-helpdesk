@@ -25,9 +25,7 @@ try:
 except:
     pytz = None
 
-__all__ = [
-    'Helpdesk', 'HelpdeskTalk', 'HelpdeskLog',
-    ]
+__all__ = ['Helpdesk', 'HelpdeskTalk', 'HelpdeskLog', 'HelpdeskAttachment',]
 
 
 class Helpdesk(Workflow, ModelSQL, ModelView):
@@ -106,7 +104,18 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         'get_last_talk')
     num_attach = fields.Function(fields.Integer('Attachments'),
         'get_num_attachments')
-    attachments = fields.One2Many('ir.attachment', 'resource', 'Attachments')
+    attachments = fields.One2Many('ir.attachment', 'resource', 'Attachments',
+        help='Attachments fields related in this helpdesk. Remember to remove email attachments '
+            'not necessary, for example, signatures, logos, etc'
+        )
+    add_attachments = fields.Many2Many('helpdesk-ir.attachment', 'helpdesk', 'attachment',
+        'Add Attachments Email',
+        domain=[('id', 'in', Eval('attachments'))],
+        depends=['attachments'],
+        help='Send email attachments, first you need to add files in attachments field '
+            'and after select in this list. When send email, attachemtns will be '
+            'remove from this list.'
+        )
     unread = fields.Function(fields.Boolean('Unread'),
         'get_unread', setter='set_unread', searcher='search_unread')
     kind = fields.Selection([
@@ -586,3 +595,13 @@ class HelpdeskLog(ModelSQL, ModelView):
     @staticmethod
     def default_date():
         return datetime.now()
+
+
+class HelpdeskAttachment(ModelSQL):
+    'Helpdesk - Attachment'
+    __name__ = 'helpdesk-ir.attachment'
+    _table = 'helpdesk_attachment_rel'
+    helpdesk = fields.Many2One('helpdesk', 'Helpdesk', ondelete='CASCADE',
+            select=True, required=True)
+    attachment = fields.Many2One('ir.attachment', 'Move', ondelete='RESTRICT',
+            select=True, required=True)
