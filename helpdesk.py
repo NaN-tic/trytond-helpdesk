@@ -277,8 +277,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
 
     @staticmethod
     def default_date():
-        timezone = pytz.timezone('UTC') if pytz else None
-        return datetime.now(timezone)
+        return datetime.now()
 
     @staticmethod
     def default_employee():
@@ -598,8 +597,7 @@ class HelpdeskTalk(ModelSQL, ModelView):
 
     @staticmethod
     def default_date():
-        timezone = pytz.timezone('UTC') if pytz else None
-        return datetime.now(timezone)
+        return datetime.now()
 
     def truncate_data(self):
         message = self.message and self.message.split('\n') or []
@@ -641,8 +639,7 @@ class HelpdeskLog(ModelSQL, ModelView):
 
     @staticmethod
     def default_date():
-        timezone = pytz.timezone('UTC') if pytz else None
-        return datetime.now(timezone)
+        return datetime.now()
 
 
 class HelpdeskAttachment(ModelSQL):
