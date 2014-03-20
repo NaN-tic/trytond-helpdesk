@@ -504,7 +504,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         Attachment = pool.get('ir.attachment')
         for (_, message) in messages:
             msgeid = message.messageid
-            msgfrom = msgfrom = parseaddr(re.sub('[.,;]', '', message.from_addr))[1] if message.from_addr else None
+            msgfrom = msgfrom = parseaddr(re.sub('[,;]', '', message.from_addr))[1] if message.from_addr else None
             msgcc = message.cc if not message.cc == 'None' else None
             msgreferences = message.references
             msginrepplyto = getattr(message, 'inrepplyto', None)
