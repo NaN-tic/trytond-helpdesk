@@ -619,7 +619,7 @@ class HelpdeskTalk(ModelSQL, ModelView):
                     lzone = dateutil.tz.tzlocal()
                     date = date.replace(tzinfo=lzone).astimezone(czone)
             display += '(' + str(date) + ')'
-        display += ':\n' + self.truncate_data(self.description)
+        display += ':\n' + self.truncate_data()
         return display
 
 
