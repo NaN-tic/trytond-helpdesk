@@ -314,6 +314,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         Talk = pool.get('helpdesk.talk')
         User = pool.get('res.user')
         user = User(Transaction().user)
+        signature = '\n\n%s' % user.signature
         reads = []
         for helpdesk in helpdesks:
             if not helpdesk.message:
@@ -322,7 +323,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             talk.date = datetime.now()
             talk.email = user.email or None
             talk.helpdesk = helpdesk
-            talk.message = helpdesk.message
+            talk.message = helpdesk.message + signature
             talk.unread = False
             talk.save()
             for talk in helpdesk.talks:
@@ -381,6 +382,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         User = pool.get('res.user')
         user = User(Transaction().user)
         from_ = user.email or server.smtp_email
+        signature = '\n\n%s' % user.signature
         if server.smtp_use_email:
             from_ = server.smtp_email
         for helpdesk in helpdesks:
@@ -408,9 +410,10 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
 
             if helpdesk.add_attachments:
                 msg = MIMEMultipart()
-                msg.attach(MIMEText(helpdesk.message, _charset='utf-8'))
+                msg.attach(MIMEText(helpdesk.message + signature,
+                    _charset='utf-8'))
             else:
-                msg = MIMEText(helpdesk.message, _charset='utf-8')
+                msg = MIMEText(helpdesk.message + signature, _charset='utf-8')
 
             msg['Subject'] = Header(helpdesk.name, 'utf-8')
             msg['From'] = from_
