@@ -314,7 +314,6 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         Talk = pool.get('helpdesk.talk')
         User = pool.get('res.user')
         user = User(Transaction().user)
-        signature = '\n\n%s' % user.signature if user.signature else user.name
         reads = []
         for helpdesk in helpdesks:
             if not helpdesk.message:
@@ -323,7 +322,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             talk.date = datetime.now()
             talk.email = user.email or None
             talk.helpdesk = helpdesk
-            talk.message = helpdesk.message + signature
+            talk.message = helpdesk.message
             talk.unread = False
             talk.save()
             for talk in helpdesk.talks:
