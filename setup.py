@@ -10,7 +10,7 @@ import ConfigParser
 
 MODULE = 'helpdesk'
 PREFIX = 'trytonzz'
-MODULE2PREFIX = {}
+MODULE2PREFIX = {'party_communication': 'trytonspain'}
 
 
 def read(fname):
