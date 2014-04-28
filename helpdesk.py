@@ -31,6 +31,13 @@ except:
 
 __all__ = ['Helpdesk', 'HelpdeskTalk', 'HelpdeskLog', 'HelpdeskAttachment']
 
+PREFIX_REPLY = ['re', 'fw', 'fwd', 'fw', 'was', 'ot', 'eom', 'ab', 'ar', 'fya', 
+    'fysa', 'fyfg', 'fyg', 'i', 'let', 'lsfw', 'nim', 'nls', 'nm', 'nmp', 'nms',
+    'nntr', 'nrn', 'nrr', 'nsfw', 'nss', 'nt', 'nwr', 'nws', 'ooo', 'pnfo', 'pnsfw',
+    'pyr', 'que', 'rb', 'rlb', 'rr', 'sfw', 'sim', 'ssia', 'tbf', 'tsfw', 'y/n',
+    'sv', 'antw', 'vs', 're', 'aw', 'r', 'rif','sv', 're', 'odp', 'ynt', 'doorst',
+    'vl', 'tr', 'wg', 'fs', 'vs', 'vb', 'rv', 'enc', 'pd',]
+
 
 class Helpdesk(Workflow, ModelSQL, ModelView):
     'Helpdesk'
@@ -531,6 +538,10 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                         helpdesk = helpdesks[0]
                         break
             if not helpdesk:
+                reply_subject = msgsubject.split(':')
+                if reply_subject:
+                    if reply_subject[0].lower() in PREFIX_REPLY:
+                        msgsubject = reply_subject[1]
                 helpdesks = cls.search([
                     ('name', 'ilike', msgsubject),
                     ['OR',
