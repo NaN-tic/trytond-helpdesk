@@ -538,7 +538,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                         helpdesk = helpdesks[0]
                         break
             if not helpdesk:
-                reply_subject = msgsubject.split(':')
+                reply_subject = msgsubject.split(': ')
                 if reply_subject:
                     if reply_subject[0].lower() in PREFIX_REPLY:
                         msgsubject = reply_subject[1]
