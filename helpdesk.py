@@ -541,7 +541,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 reply_subject = msgsubject.split(': ')
                 if reply_subject:
                     if reply_subject[0].lower() in PREFIX_REPLY:
-                        msgsubject = reply_subject[1]
+                        msgsubject = reply_subject[-1]
                 helpdesks = cls.search([
                     ('name', 'ilike', msgsubject),
                     ['OR',
