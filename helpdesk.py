@@ -86,7 +86,6 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             ('done', 'Done'),
             ], 'Status', readonly=True)
     party = fields.Many2One('party.party', 'Party',
-        on_change=['party', 'email_from'],
         states={
             'readonly': Eval('state').in_(['cancel', 'done']),
             },
@@ -252,6 +251,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 ])
         return len(attachments)
 
+    @fields.depends('party', 'email_from')
     def on_change_party(self):
         pool = Pool()
         Address = pool.get('party.address')
