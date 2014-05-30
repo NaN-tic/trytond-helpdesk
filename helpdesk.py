@@ -214,7 +214,9 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     def set_unread(cls, helpdesks, name, value):
         HelpdeskTalk = Pool().get('helpdesk.talk')
         for helpdesk in helpdesks:
-            HelpdeskTalk.write(helpdesk.talks, {'unread': value})
+            if not helpdesk.talks:
+                continue
+            HelpdeskTalk.write(list(helpdesk.talks), {'unread': value})
 
     @classmethod
     def search_unread(cls, name, clause):
