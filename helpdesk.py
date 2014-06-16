@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email.utils import parseaddr
-from sql.aggregate import Max
+from sql.aggregate import Count, Max
 from trytond.model import Workflow, ModelView, ModelSQL, fields
 from trytond.pool import Pool
 from trytond.pyson import Eval
@@ -258,12 +258,25 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             res[name].update({r['id']: r[name] for r in cursor.dictfetchall()})
             return res
 
-    def get_num_attachments(self, name=None):
+    @classmethod
+    def get_num_attachments(cls, helpdesks, names):
         Attachment = Pool().get('ir.attachment')
-        attachments = Attachment.search([
-                ('resource', '=', 'helpdesk,%s' % self.id),
-                ])
-        return len(attachments)
+        attachment = Attachment.__table__()
+        cursor = Transaction().cursor
+        for name in names:
+            if name != 'num_attach':
+                continue
+            res = {name: {h.id: None for h in helpdesks}}
+            cursor.execute(*attachment.select(
+                attachment.resource.as_('resource'),
+                Count(attachment.id).as_(name),
+                where=attachment.resource.in_(
+                    ['helpdesk,%s' % str(h.id) for h in helpdesks]),
+                group_by=attachment.resource))
+            res[name].update({
+                    int(r['resource'].split(',')[1]): r[name]
+                    for r in cursor.dictfetchall()})
+            return res
 
     @fields.depends('party', 'email_from')
     def on_change_party(self):
