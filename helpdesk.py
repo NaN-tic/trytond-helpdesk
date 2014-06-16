@@ -9,6 +9,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email.utils import parseaddr
+from sql.aggregate import Max
 from trytond.model import Workflow, ModelView, ModelSQL, fields
 from trytond.pool import Pool
 from trytond.pyson import Eval
@@ -238,13 +239,24 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             ''' % unread)
         return [('id', 'in', [x[0] for x in cursor.fetchall()])]
 
-    def get_last_talk(self, name):
+    @classmethod
+    def get_last_talk(cls, helpdesks, names):
         Talk = Pool().get('helpdesk.talk')
-        talks = Talk.search([
-                ('helpdesk', '=', self.id),
-                ], order=[('date', 'DESC')], limit=1)
-        if talks:
-            return talks[0].date
+        helpdesk_talk = Talk.__table__()
+        cursor = Transaction().cursor
+        for name in names:
+            if name != 'last_talk':
+                continue
+            res = {name: {h.id: None for h in helpdesks}}
+
+            cursor.execute(*helpdesk_talk.select(
+                helpdesk_talk.helpdesk.as_('id'),
+                Max(helpdesk_talk.date).as_(name),
+                where=helpdesk_talk.helpdesk.in_(
+                    [h.id for h in helpdesks]),
+                group_by=helpdesk_talk.helpdesk))
+            res[name].update({r['id']: r[name] for r in cursor.dictfetchall()})
+            return res
 
     def get_num_attachments(self, name=None):
         Attachment = Pool().get('ir.attachment')
