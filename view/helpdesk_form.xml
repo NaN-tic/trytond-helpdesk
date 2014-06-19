@@ -55,8 +55,8 @@ copyright notices and license terms. -->
         <page string="Related Documents" id="documents">
         </page>
         <page string="Extra Information" id="extra">
-            <label name="create_date"/>
-            <field name="create_date"/>
+            <!--<label name="create_date"/>-->
+            <!--<field name="create_date"/>-->
             <label name="closed_date"/>
             <field name="closed_date"/>
             <label name="email_cc"/>
