@@ -5,6 +5,9 @@ copyright notices and license terms. -->
 <tree string="Helpdesk" colors="If(In(Eval('state', ''), ['cancel', 'done']), 'grey', If(Equal(Eval('state', ''), 'open'), 'red', 'black'))">
     <field name="date"/>
     <field name="party"/>
+    <field name="contact" tree_invisible="1"/>
+    <field name="email_from"/>
+    <field name="email_cc" tree_invisible="1"/>
     <field name="name"/>
     <field name="employee"/>
     <field name="priority"/>
