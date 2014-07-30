@@ -87,7 +87,7 @@ msgstr "Data"
 
 msgctxt "field:helpdesk,email_cc:"
 msgid "CC"
-msgstr "Fill"
+msgstr "CC"
 
 msgctxt "field:helpdesk,email_from:"
 msgid "Email"
