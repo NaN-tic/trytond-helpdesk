@@ -240,43 +240,36 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         return [('id', 'in', [x[0] for x in cursor.fetchall()])]
 
     @classmethod
-    def get_last_talk(cls, helpdesks, names):
+    def get_last_talk(cls, helpdesks, name):
         Talk = Pool().get('helpdesk.talk')
         helpdesk_talk = Talk.__table__()
         cursor = Transaction().cursor
-        for name in names:
-            if name != 'last_talk':
-                continue
-            res = {name: {h.id: None for h in helpdesks}}
-
-            cursor.execute(*helpdesk_talk.select(
-                helpdesk_talk.helpdesk.as_('id'),
-                Max(helpdesk_talk.date).as_(name),
-                where=helpdesk_talk.helpdesk.in_(
-                    [h.id for h in helpdesks]),
-                group_by=helpdesk_talk.helpdesk))
-            res[name].update({r['id']: r[name] for r in cursor.dictfetchall()})
-            return res
+        res = {h.id: None for h in helpdesks}
+        cursor.execute(*helpdesk_talk.select(
+            helpdesk_talk.helpdesk.as_('id'),
+            Max(helpdesk_talk.date).as_(name),
+            where=helpdesk_talk.helpdesk.in_(
+                [h.id for h in helpdesks]),
+            group_by=helpdesk_talk.helpdesk))
+        res.update({r['id']: r[name] for r in cursor.dictfetchall()})
+        return res
 
     @classmethod
-    def get_num_attachments(cls, helpdesks, names):
+    def get_num_attachments(cls, helpdesks, name):
         Attachment = Pool().get('ir.attachment')
         attachment = Attachment.__table__()
         cursor = Transaction().cursor
-        for name in names:
-            if name != 'num_attach':
-                continue
-            res = {name: {h.id: None for h in helpdesks}}
-            cursor.execute(*attachment.select(
-                attachment.resource.as_('resource'),
-                Count(attachment.id).as_(name),
-                where=attachment.resource.in_(
-                    ['helpdesk,%s' % str(h.id) for h in helpdesks]),
-                group_by=attachment.resource))
-            res[name].update({
-                    int(r['resource'].split(',')[1]): r[name]
-                    for r in cursor.dictfetchall()})
-            return res
+        res = {h.id: None for h in helpdesks}
+        cursor.execute(*attachment.select(
+            attachment.resource.as_('resource'),
+            Count(attachment.id).as_(name),
+            where=attachment.resource.in_(
+                ['helpdesk,%s' % str(h.id) for h in helpdesks]),
+            group_by=attachment.resource))
+        res.update({
+                int(r['resource'].split(',')[1]): r[name]
+                for r in cursor.dictfetchall()})
+        return res
 
     @fields.depends('party', 'email_from')
     def on_change_party(self):
