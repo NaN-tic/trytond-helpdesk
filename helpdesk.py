@@ -150,8 +150,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                     'address!',
                 'no_from_valid': 'Not valid from email!',
                 'no_recepients_valid': 'Not valid recepients email!',
-                'smtp_error': 'Wrong connection to SMTP server. Email have '
-                    'not sent.',
+                'smtp_error': 'Wrong connection to SMTP server. Not send email.',
                 'no_employee': 'You must select a employee in yours user '
                     'preferences!',
                 'send': 'Send',
