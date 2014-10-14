@@ -40,8 +40,8 @@ msgid "Send"
 msgstr "Enviat"
 
 msgctxt "error:helpdesk:"
-msgid "Wrong connection to SMTP server. Email have not sent."
-msgstr "Hi ha hagut un error en la connexió SMTP. El correu no s'ha enviat."
+msgid "Wrong connection to SMTP server. Not send email."
+msgstr "No s'ha pogut connectar al servidor SMTP. No s'ha enviat el correu."
 
 msgctxt "error:helpdesk:"
 msgid ""
@@ -74,8 +74,8 @@ msgid "Contact"
 msgstr "Contacte"
 
 msgctxt "field:helpdesk,create_date:"
-msgid "Created"
-msgstr "Creat"
+msgid "Create Date"
+msgstr "Data creació"
 
 msgctxt "field:helpdesk,create_uid:"
 msgid "Create User"
