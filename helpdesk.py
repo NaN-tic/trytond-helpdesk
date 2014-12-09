@@ -599,7 +599,10 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             if attachments:
                 i = 0
                 for attachment in message.attachments:
-                    fname = GetMail.get_filename(attachment[0])
+                    try:
+                        fname = GetMail.get_filename(attachment[0])
+                    except:
+                        continue
                     attach = Attachment()
                     attach.name = '%s-%s' % (i, fname)
                     attach.type = 'data'
