@@ -531,8 +531,9 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         Helpdesk = pool.get('helpdesk')
         HelpdeskTalk = pool.get('helpdesk.talk')
         Attachment = pool.get('ir.attachment')
-        for (_, message) in messages:
-            msgeid = message.messageid
+
+        for message in messages:
+            msgeid = str(message.uid)
             msgfrom = msgfrom = parseaddr(re.sub('[,;]', '', message.from_addr))[1] if message.from_addr else None
             msgcc = message.cc if not message.cc == 'None' else None
             msgreferences = message.references
