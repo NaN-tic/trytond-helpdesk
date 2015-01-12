@@ -630,7 +630,9 @@ class HelpdeskTalk(ModelSQL, ModelView):
     @classmethod
     def __setup__(cls):
         super(HelpdeskTalk, cls).__setup__()
-        cls._order.insert(0, ('id', 'DESC'))
+        cls._order = [
+            ('id', 'DESC'),
+            ]
 
     @staticmethod
     def default_date():
@@ -672,7 +674,9 @@ class HelpdeskLog(ModelSQL, ModelView):
     @classmethod
     def __setup__(cls):
         super(HelpdeskLog, cls).__setup__()
-        cls._order.insert(0, ('id', 'DESC'))
+        cls._order = [
+            ('id', 'DESC'),
+            ]
 
     @staticmethod
     def default_date():
