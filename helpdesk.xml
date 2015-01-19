@@ -8,9 +8,16 @@ copyright notices and license terms. -->
         <record model="res.group" id="group_helpdesk_manager">
             <field name="name">Helpdesk Manager</field>
         </record>
+        <record model="res.group" id="group_helpdesk">
+            <field name="name">Helpdesk</field>
+        </record>
         <record model="res.user-res.group" id="user_admin_group_helpdesk_manager">
             <field name="user" ref="res.user_admin"/>
             <field name="group" ref="group_helpdesk_manager"/>
+        </record>
+        <record model="res.user-res.group" id="user_admin_group_helpdesk">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="group_helpdesk"/>
         </record>
 
         <!-- helpdesk -->
@@ -44,6 +51,10 @@ copyright notices and license terms. -->
         <record model="ir.ui.menu-res.group" id="menu_helpdesk_group_helpdesk">
             <field name="menu" ref="menu_helpdesk"/>
             <field name="group" ref="group_helpdesk_manager"/>
+        </record>
+        <record model="ir.ui.menu-res.group" id="menu_helpdesk_group">
+            <field name="menu" ref="menu_helpdesk"/>
+            <field name="group" ref="group_helpdesk"/>
         </record>
 
         <record model="ir.action.act_window.domain"
@@ -176,7 +187,7 @@ copyright notices and license terms. -->
         </record>
 
         <!-- Access Helpdesk -->
-        <record model="ir.model.access" id="access_group_helpdesk">
+        <record model="ir.model.access" id="access_group_helpdesk_manager">
             <field name="model" search="[('model', '=', 'helpdesk')]"/>
             <field name="group" ref="group_helpdesk_manager"/>
             <field name="perm_read" eval="True"/>
@@ -184,7 +195,7 @@ copyright notices and license terms. -->
             <field name="perm_create" eval="True"/>
             <field name="perm_delete" eval="True"/>
         </record>
-        <record model="ir.model.access" id="access_helpdesk_talk_manager">
+        <record model="ir.model.access" id="access_group_helpdesk_manager_talk">
             <field name="model" search="[('model', '=', 'helpdesk.talk')]"/>
             <field name="group" ref="group_helpdesk_manager"/>
             <field name="perm_read" eval="True"/>
@@ -192,9 +203,33 @@ copyright notices and license terms. -->
             <field name="perm_create" eval="True"/>
             <field name="perm_delete" eval="True"/>
         </record>
-        <record model="ir.model.access" id="access_group_helpdesk_log">
+        <record model="ir.model.access" id="access_group_helpdesk_manager_log">
             <field name="model" search="[('model', '=', 'helpdesk.log')]"/>
             <field name="group" ref="group_helpdesk_manager"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+        <record model="ir.model.access" id="access_group_helpdesk">
+            <field name="model" search="[('model', '=', 'helpdesk')]"/>
+            <field name="group" ref="group_helpdesk"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+        <record model="ir.model.access" id="access_group_helpdesk_talk">
+            <field name="model" search="[('model', '=', 'helpdesk.talk')]"/>
+            <field name="group" ref="group_helpdesk"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+        <record model="ir.model.access" id="access_group_helpdesk_log">
+            <field name="model" search="[('model', '=', 'helpdesk.log')]"/>
+            <field name="group" ref="group_helpdesk"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
             <field name="perm_create" eval="True"/>
