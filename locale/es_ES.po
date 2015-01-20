@@ -382,6 +382,10 @@ msgctxt "model:ir.ui.menu,name:menu_helpdesk"
 msgid "Helpdesks"
 msgstr "Soporte"
 
+msgctxt "model:res.group,name:group_helpdesk"
+msgid "Helpdesk"
+msgstr "Soporte"
+
 msgctxt "model:res.group,name:group_helpdesk_manager"
 msgid "Helpdesk Manager"
 msgstr "Gestor de soporte"

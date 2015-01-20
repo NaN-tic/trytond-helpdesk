@@ -380,6 +380,10 @@ msgctxt "model:ir.ui.menu,name:menu_helpdesk"
 msgid "Helpdesks"
 msgstr "Suport"
 
+msgctxt "model:res.group,name:group_helpdesk"
+msgid "Helpdesk"
+msgstr "Suport"
+
 msgctxt "model:res.group,name:group_helpdesk_manager"
 msgid "Helpdesk Manager"
 msgstr "Gestor de suport"
