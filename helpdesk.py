@@ -407,12 +407,12 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         SMTP = pool.get('smtp.server')
         User = pool.get('res.user')
         user = User(Transaction().user)
-        from_ = user.email or server.smtp_email
+        from_ = user.email
         signature = '\n\n--\n%s' % user.signature if user.signature else user.name
         if server.smtp_use_email:
             from_ = server.smtp_email
         for helpdesk in helpdesks:
-            if helpdesk.smtp_server:
+            if not from_:
                 from_ = helpdesk.smtp_server.smtp_email
             if not helpdesk.email_from:
                 cls.raise_user_error('no_email_from')
