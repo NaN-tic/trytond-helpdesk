@@ -143,6 +143,10 @@ msgctxt "field:helpdesk,rec_name:"
 msgid "Name"
 msgstr "Nombre"
 
+msgctxt "field:helpdesk,smtp_server:"
+msgid "SMTP Server"
+msgstr "Servidor SMTP"
+
 msgctxt "field:helpdesk,state:"
 msgid "Status"
 msgstr "Estado"

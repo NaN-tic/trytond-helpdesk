@@ -141,6 +141,10 @@ msgctxt "field:helpdesk,rec_name:"
 msgid "Name"
 msgstr "Nom del camp"
 
+msgctxt "field:helpdesk,smtp_server:"
+msgid "SMTP Server"
+msgstr "Servidor SMTP"
+
 msgctxt "field:helpdesk,state:"
 msgid "Status"
 msgstr "Estat"
