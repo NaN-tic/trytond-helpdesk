@@ -8,6 +8,7 @@ copyright notices and license terms. -->
     <field name="contact" tree_invisible="1"/>
     <field name="email_from"/>
     <field name="email_cc" tree_invisible="1"/>
+    <field name="smtp_server" tree_invisible="1"/>
     <field name="name"/>
     <field name="employee"/>
     <field name="priority"/>

@@ -132,6 +132,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     kind = fields.Selection([
             ('generic', 'Generic'),
             ], 'Kind')
+    smtp_server = fields.Many2One('smtp.server', 'SMTP Server')
 
     @classmethod
     def __setup__(cls):
@@ -411,6 +412,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         if server.smtp_use_email:
             from_ = server.smtp_email
         for helpdesk in helpdesks:
+            if helpdesk.smtp_server:
+                from_ = helpdesk.smtp_server.smtp_email
             if not helpdesk.email_from:
                 cls.raise_user_error('no_email_from')
             if not helpdesk.message:
@@ -527,12 +530,16 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     def getmail(cls, messages, attachments=None):
         '''Get messages and load in helpdesk talks'''
         pool = Pool()
+        SMTPServer = pool.get('smtp.server')
         GetMail = pool.get('getmail.server')
         Helpdesk = pool.get('helpdesk')
         HelpdeskTalk = pool.get('helpdesk.talk')
         Attachment = pool.get('ir.attachment')
 
         for message in messages:
+            smtp_servers = SMTPServer.search([('smtp_email', '=', message.to)],
+                limit=1)
+            smtp_server = smtp_servers[0] if smtp_servers else None
             msgeid = str(message.uid)
             msgfrom = msgfrom = parseaddr(re.sub('[,;]', '', message.from_addr))[1] if message.from_addr else None
             msgcc = message.cc if not message.cc == 'None' else None
@@ -587,6 +594,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 helpdesk.party = party if party else None
                 helpdesk.address = address if address else None
                 helpdesk.message_id = msgeid
+                helpdesk.smtp_server = smtp_server
                 helpdesk.save()
             # Create a new helpdesk talk
             helpdesk_talk = HelpdeskTalk()
