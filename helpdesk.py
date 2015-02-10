@@ -545,8 +545,12 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 limit=1)
             smtp_server = smtp_servers[0] if smtp_servers else None
             msgeid = str(message.uid)
-            msgfrom = msgfrom = parseaddr(re.sub('[,;]', '', message.from_addr))[1] if message.from_addr else None
-            msgcc = message.cc if not message.cc == 'None' else None
+            msgfrom = parseaddr(re.sub('[,;]', '', message.from_addr))[1] if message.from_addr else None
+            msgcc = None
+            if message.cc:
+                ccs = re.findall(r'[\w\.-]+@[\w\.-]+', message.cc)
+                if ccs:
+                    msgcc = ",".join(ccs)
             msgreferences = message.references
             msginrepplyto = getattr(message, 'inrepplyto', None)
             msgsubject = message.title or 'Not subject'
