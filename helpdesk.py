@@ -537,7 +537,11 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         Attachment = pool.get('ir.attachment')
 
         for message in messages:
-            smtp_servers = SMTPServer.search([('smtp_email', '=', message.to)],
+            to_ = message.to
+            if not to_:
+                to_ = message.delivered_to
+            smtp_emails = re.findall(r'[\w\.-]+@[\w\.-]+', to_)
+            smtp_servers = SMTPServer.search([('smtp_email', 'in', smtp_emails)],
                 limit=1)
             smtp_server = smtp_servers[0] if smtp_servers else None
             msgeid = str(message.uid)
