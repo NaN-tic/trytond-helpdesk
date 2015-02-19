@@ -404,7 +404,6 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     @classmethod
     def send_email(cls, helpdesks, server):
         pool = Pool()
-        SMTP = pool.get('smtp.server')
         User = pool.get('res.user')
         user = User(Transaction().user)
         from_ = user.email
@@ -473,10 +472,10 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 msg.attach(attach)
 
             try:
-                server = SMTP.get_smtp_server(server)
-                server.sendmail(from_, recipients +
+                smtp_server = server.get_smtp_server()
+                smtp_server.sendmail(from_, recipients +
                     cc_addresses, msg.as_string())
-                server.quit()
+                smtp_server.quit()
             except:
                 cls.raise_user_error('smtp_error')
 
