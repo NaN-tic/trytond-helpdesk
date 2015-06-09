@@ -619,12 +619,20 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                         fname = GetMail.get_filename(attachment[0])
                     except:
                         continue
-                    attach = Attachment()
-                    attach.name = '%s-%s' % (i, fname)
-                    attach.type = 'data'
-                    attach.data = attachment[1]
-                    attach.resource = '%s' % (helpdesk)
-                    attach.save()
+
+                    try:
+                        attach = Attachment()
+                        attach.name = '%s-%s' % (i, fname)
+                        attach.type = 'data'
+                        attach.data = attachment[1]
+                        attach.resource = '%s' % (helpdesk)
+                        attach.save()
+                    except TypeError, e:
+                        logging.getLogger('Helpdesk').warning(
+                            'Email: %s. %s' % (msgeid, e))
+                        continue
+                    except:
+                        continue
                     i += 1
         return True
 
