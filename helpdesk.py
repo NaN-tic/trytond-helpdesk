@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email.utils import parseaddr
-from sql.aggregate import Count, Max
+from sql.aggregate import Count
 from trytond.model import Workflow, ModelView, ModelSQL, fields
 from trytond.pool import Pool
 from trytond.pyson import Eval
@@ -111,8 +111,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     logs = fields.One2Many('helpdesk.log', 'helpdesk',
         'Logs Helpdesk', readonly=True)
     message_id = fields.Char('Message ID')
-    last_talk = fields.Function(fields.DateTime('Last Talk'),
-        'get_last_talk')
+    last_talk = fields.DateTime('Last Talk', readonly=True)
     num_attach = fields.Function(fields.Integer('Attachments'),
         'get_num_attachments')
     attachments = fields.One2Many('ir.attachment', 'resource', 'Attachments',
@@ -238,21 +237,6 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 h.id
             ''' % unread)
         return [('id', 'in', [x[0] for x in cursor.fetchall()])]
-
-    @classmethod
-    def get_last_talk(cls, helpdesks, name):
-        Talk = Pool().get('helpdesk.talk')
-        helpdesk_talk = Talk.__table__()
-        cursor = Transaction().cursor
-        res = {h.id: None for h in helpdesks}
-        cursor.execute(*helpdesk_talk.select(
-            helpdesk_talk.helpdesk.as_('id'),
-            Max(helpdesk_talk.date).as_(name),
-            where=helpdesk_talk.helpdesk.in_(
-                [h.id for h in helpdesks]),
-            group_by=helpdesk_talk.helpdesk))
-        res.update({r['id']: r[name] for r in cursor.dictfetchall()})
-        return res
 
     @classmethod
     def get_num_attachments(cls, helpdesks, name):
@@ -683,6 +667,39 @@ class HelpdeskTalk(ModelSQL, ModelView):
             display += '(' + str(date) + ')'
         display += ':\n' + self.truncate_data()
         return display
+
+    @classmethod
+    def create(cls, vlist):
+        Helpdesk = Pool().get('helpdesk')
+
+        now = datetime.now()
+
+        talks = super(HelpdeskTalk, cls).create(vlist)
+        helpdesks = [t.helpdesk for t in talks]
+
+        if helpdesks:
+            Helpdesk.write(helpdesks, {
+                'last_talk': now,
+                })
+        return talks
+
+    @classmethod
+    def write(cls, *args):
+        Helpdesk = Pool().get('helpdesk')
+
+        helpdesks = []
+        now = datetime.now()
+
+        super(HelpdeskTalk, cls).write(*args)
+
+        actions = iter(args)
+        for talks, values in zip(actions, actions):
+            helpdesks = [t.helpdesk for t in talks]
+
+        if helpdesks:
+            Helpdesk.write(helpdesks, {
+                'last_talk': now,
+                })
 
 
 class HelpdeskLog(ModelSQL, ModelView):
