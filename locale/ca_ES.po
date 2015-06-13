@@ -422,11 +422,11 @@ msgstr "Esborrany"
 
 msgctxt "selection:helpdesk,state:"
 msgid "Open"
-msgstr "Oberts"
+msgstr "Obert"
 
 msgctxt "selection:helpdesk,state:"
 msgid "Pending"
-msgstr "Pendents"
+msgstr "Pendent"
 
 msgctxt "view:helpdesk.log:"
 msgid "Helpdesk Logs"

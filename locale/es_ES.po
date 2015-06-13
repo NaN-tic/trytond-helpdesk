@@ -336,7 +336,7 @@ msgstr "Todos"
 msgctxt ""
 "model:ir.action.act_window.domain,name:act_all_helpdesk_domain_helpdesk_done"
 msgid "Done"
-msgstr "Realizados"
+msgstr "Realizado"
 
 msgctxt ""
 "model:ir.action.act_window.domain,name:act_all_helpdesk_domain_helpdesk_open"
@@ -424,11 +424,11 @@ msgstr "Borrador"
 
 msgctxt "selection:helpdesk,state:"
 msgid "Open"
-msgstr "Abrir"
+msgstr "Abierto"
 
 msgctxt "selection:helpdesk,state:"
 msgid "Pending"
-msgstr "Pendientes"
+msgstr "Pendiente"
 
 msgctxt "view:helpdesk.log:"
 msgid "Helpdesk Logs"
