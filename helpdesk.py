@@ -32,12 +32,13 @@ except:
 
 __all__ = ['Helpdesk', 'HelpdeskTalk', 'HelpdeskLog', 'HelpdeskAttachment']
 
-PREFIX_REPLY = ['re', 'fw', 'fwd', 'fw', 'was', 'ot', 'eom', 'ab', 'ar', 'fya', 
-    'fysa', 'fyfg', 'fyg', 'i', 'let', 'lsfw', 'nim', 'nls', 'nm', 'nmp', 'nms',
-    'nntr', 'nrn', 'nrr', 'nsfw', 'nss', 'nt', 'nwr', 'nws', 'ooo', 'pnfo', 'pnsfw',
-    'pyr', 'que', 'rb', 'rlb', 'rr', 'sfw', 'sim', 'ssia', 'tbf', 'tsfw', 'y/n',
-    'sv', 'antw', 'vs', 're', 'aw', 'r', 'rif','sv', 're', 'odp', 'ynt', 'doorst',
-    'vl', 'tr', 'wg', 'fs', 'vs', 'vb', 'rv', 'enc', 'pd',]
+PREFIX_REPLY = ['re', 'fw', 'fwd', 'fw', 'was', 'ot', 'eom', 'ab', 'ar', 'fya',
+    'fysa', 'fyfg', 'fyg', 'i', 'let', 'lsfw', 'nim', 'nls', 'nm', 'nmp',
+    'nms', 'nntr', 'nrn', 'nrr', 'nsfw', 'nss', 'nt', 'nwr', 'nws', 'ooo',
+    'pnfo', 'pnsfw', 'pyr', 'que', 'rb', 'rlb', 'rr', 'sfw', 'sim', 'ssia',
+    'tbf', 'tsfw', 'y/n', 'sv', 'antw', 'vs', 're', 'aw', 'r', 'rif', 'sv',
+    're', 'odp', 'ynt', 'doorst', 'vl', 'tr', 'wg', 'fs', 'vs', 'vb', 'rv',
+    'enc', 'pd']
 
 
 class Helpdesk(Workflow, ModelSQL, ModelView):
@@ -115,17 +116,16 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     num_attach = fields.Function(fields.Integer('Attachments'),
         'get_num_attachments')
     attachments = fields.One2Many('ir.attachment', 'resource', 'Attachments',
-        help='Attachments fields related in this helpdesk. Remember to remove email attachments '
-            'not necessary, for example, signatures, logos, etc'
-        )
-    add_attachments = fields.Many2Many('helpdesk-ir.attachment', 'helpdesk', 'attachment',
-        'Add Attachments Email',
+        help='Attachments fields related in this helpdesk. Remember to remove '
+            'email attachments not necessary, for example, signatures, logos, '
+            'etc')
+    add_attachments = fields.Many2Many('helpdesk-ir.attachment', 'helpdesk',
+        'attachment', 'Add Attachments Email',
         domain=[('id', 'in', Eval('attachments'))],
         depends=['attachments'],
-        help='Send email attachments, first you need to add files in attachments field '
-            'and after select in this list. When send email, attachemtns will be '
-            'remove from this list.'
-        )
+        help='Send email attachments, first you need to add files in '
+            'attachments field and after select in this list. When send email,'
+            ' attachemtns will be remove from this list.')
     unread = fields.Function(fields.Boolean('Unread'),
         'get_unread', setter='set_unread', searcher='search_unread')
     kind = fields.Selection([
@@ -150,7 +150,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                     'address!',
                 'no_from_valid': 'Not valid from email!',
                 'no_recepients_valid': 'Not valid recepients email!',
-                'smtp_error': 'Wrong connection to SMTP server. Not send email.',
+                'smtp_error':
+                    'Wrong connection to SMTP server. Not send email.',
                 'no_employee': 'You must select a employee in yours user '
                     'preferences!',
                 'send': 'Send',
@@ -391,7 +392,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         User = pool.get('res.user')
         user = User(Transaction().user)
         from_ = user.email
-        signature = '\n\n--\n%s' % user.signature if user.signature else user.name
+        signature = ('\n\n--\n%s' % user.signature
+            if user.signature else user.name)
         if server.smtp_use_email:
             from_ = server.smtp_email
         for helpdesk in helpdesks:
@@ -524,11 +526,12 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             if not to_:
                 to_ = message.delivered_to
             smtp_emails = re.findall(r'[\w\.-]+@[\w\.-]+', to_)
-            smtp_servers = SMTPServer.search([('smtp_email', 'in', smtp_emails)],
-                limit=1)
+            smtp_servers = SMTPServer.search(
+                [('smtp_email', 'in', smtp_emails)], limit=1)
             smtp_server = smtp_servers[0] if smtp_servers else None
             msgeid = str(message.uid)
-            msgfrom = parseaddr(re.sub('[,;]', '', message.from_addr))[1] if message.from_addr else None
+            msgfrom = (parseaddr(re.sub('[,;]', '', message.from_addr))[1]
+                if message.from_addr else None)
             msgcc = None
             if message.cc:
                 ccs = re.findall(r'[\w\.-]+@[\w\.-]+', message.cc)
@@ -542,7 +545,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             logging.getLogger('Helpdesk').info('Process email: %s' %
                 (msgeid))
 
-            #Search helpdesk by msg reference, msg in reply to or "description + email from"
+            # Search helpdesk by msg reference, msg in reply to or
+            # "description + email from"
             helpdesk = None
             if msgreferences or msginrepplyto:
                 references = msgreferences or msginrepplyto
@@ -709,7 +713,7 @@ class HelpdeskLog(ModelSQL, ModelView):
     date = fields.DateTime('Date')
     user = fields.Many2One('res.user', 'User', readonly=True)
     helpdesk = fields.Many2One('helpdesk', 'Helpdesk', required=True,
-            ondelete='CASCADE')
+        ondelete='CASCADE')
 
     @classmethod
     def __setup__(cls):
@@ -728,6 +732,6 @@ class HelpdeskAttachment(ModelSQL):
     __name__ = 'helpdesk-ir.attachment'
     _table = 'helpdesk_attachment_rel'
     helpdesk = fields.Many2One('helpdesk', 'Helpdesk', ondelete='CASCADE',
-            select=True, required=True)
-    attachment = fields.Many2One('ir.attachment', 'Attachment', ondelete='RESTRICT',
-            select=True, required=True)
+        select=True, required=True)
+    attachment = fields.Many2One('ir.attachment', 'Attachment',
+        ondelete='RESTRICT', select=True, required=True)
