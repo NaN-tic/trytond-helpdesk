@@ -9,6 +9,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email.utils import parseaddr
+from html2text import html2text
 from sql.aggregate import Count
 from trytond.model import Workflow, ModelView, ModelSQL, fields
 from trytond.pool import Pool
@@ -541,7 +542,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             msginrepplyto = getattr(message, 'inrepplyto', None)
             msgsubject = message.title or 'Not subject'
             msgdate = message.date
-            msgbody = message.body
+            msgbody = html2text(message.body)
             logging.getLogger('Helpdesk').info('Process email: %s' %
                 (msgeid))
 
