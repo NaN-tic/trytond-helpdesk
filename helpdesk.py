@@ -542,7 +542,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             msginrepplyto = getattr(message, 'inrepplyto', None)
             msgsubject = message.title or 'Not subject'
             msgdate = message.date
-            msgbody = html2text(message.body)
+            msgbody = html2text(message.body.replace('\n', '<br>'))
             logging.getLogger('Helpdesk').info('Process email: %s' %
                 (msgeid))
 
@@ -580,7 +580,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             if helpdesk:
                 cls.write([helpdesk], {'state': 'pending'})
 
-            # Create a new helpdesk
+            # Helpdesk
             if not helpdesk:
                 party, address = GetMail.get_party_from_email(msgfrom)
                 helpdesk = Helpdesk()
@@ -592,7 +592,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 helpdesk.message_id = msgeid
                 helpdesk.smtp_server = smtp_server
                 helpdesk.save()
-            # Create a new helpdesk talk
+
+            # Helpdesk talk
             helpdesk_talk = HelpdeskTalk()
             helpdesk_talk.date = GetMail.get_date(msgdate)
             helpdesk_talk.email = msgfrom
@@ -600,7 +601,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             helpdesk_talk.message = msgbody
             helpdesk_talk.unread = True
             helpdesk_talk.save()
-            # Create a attachments
+
+            # Attachments
             if attachments:
                 i = 0
                 for attachment in message.attachments:
