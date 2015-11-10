@@ -19,13 +19,16 @@ import mimetypes
 import dateutil.tz
 import re
 import logging
+
+logger = logging.getLogger(__name__)
+
 CHECK_EMAIL = False
 try:
     import emailvalid
     CHECK_EMAIL = True
 except ImportError:
-    logging.getLogger('Helpdesk').warning(
-    'Unable to import emailvalid. Email validation disabled.')
+    logger.warning('Unable to import emailvalid. Email validation disabled.')
+
 try:
     import pytz
 except:
@@ -557,8 +560,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             msgsubject = message.title or 'Not subject'
             msgdate = message.date
             msgbody = html2text(message.body.replace('\n', '<br>'))
-            logging.getLogger('Helpdesk').info('Process email: %s' %
-                (msgeid))
+            logger.info('Process email: %s' % (msgeid))
 
             # Search helpdesk by msg reference, msg in reply to or
             # "description + email from"
