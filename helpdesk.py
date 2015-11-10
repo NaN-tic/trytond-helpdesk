@@ -533,21 +533,18 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     def getmail(cls, messages, attachments=None):
         '''Get messages and load in helpdesk talks'''
         pool = Pool()
-        SMTPServer = pool.get('smtp.server')
         GetMail = pool.get('getmail.server')
         Helpdesk = pool.get('helpdesk')
         HelpdeskTalk = pool.get('helpdesk.talk')
         Attachment = pool.get('ir.attachment')
 
-        for message in messages:
+        new_talks = []
+        helpdesks_to_write = set()
+        for message in list(reversed(messages)): # order older to new message
             to_ = message.to
             if not to_:
                 to_ = message.delivered_to
-            smtp_emails = re.findall(r'[\w\.-]+@[\w\.-]+', to_)
-            smtp_servers = SMTPServer.search(
-                [('smtp_email', 'in', smtp_emails)], limit=1)
-            smtp_server = smtp_servers[0] if smtp_servers else None
-            msgeid = str(message.uid)
+            msgeid = message.message_id
             msgfrom = (parseaddr(re.sub('[,;]', '', message.from_addr))[1]
                 if message.from_addr else None)
             msgcc = None
@@ -555,8 +552,20 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 ccs = re.findall(r'[\w\.-]+@[\w\.-]+', message.cc)
                 if ccs:
                     msgcc = ",".join(ccs)
-            msgreferences = message.references
-            msginrepplyto = getattr(message, 'inrepplyto', None)
+            references = message.references
+            if references:
+                if ',' in references:  # Hotmail Reply References
+                    references = references.split(',')
+                elif '\r\n' in references:  # Gmail Replay References
+                    references = references.split('\r\n')
+                elif ' ' in references:  # Yahoo References
+                    references = references.split(' ')
+                else:
+                    references = [references]
+            if not references:
+                references = [msgeid]
+            if getattr(message, 'in_reply_to'):
+                references.append(message.in_reply_to)
             msgsubject = message.title or 'Not subject'
             msgdate = message.date
             msgbody = html2text(message.body.replace('\n', '<br>'))
@@ -565,39 +574,23 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             # Search helpdesk by msg reference, msg in reply to or
             # "description + email from"
             helpdesk = None
-            if msgreferences or msginrepplyto:
-                references = msgreferences or msginrepplyto
-                if '\r\n' in references:
-                    references = references.split('\r\n')
-                else:
-                    references = references.split(' ')
-                for ref in references:
-                    ref = ref.strip()
-                    helpdesks = cls.search([('message_id', '=', ref)], limit=1)
-                    if helpdesks:
-                        helpdesk = helpdesks[0]
-                        break
-            if not helpdesk:
-                reply_subject = msgsubject.split(': ')
-                if reply_subject:
-                    if reply_subject[0].lower() in PREFIX_REPLY:
-                        msgsubject = reply_subject[-1]
-                helpdesks = cls.search([
-                    ('name', 'ilike', msgsubject),
-                    ['OR',
-                        ('email_from', '=', msgfrom),
-                        ('email_cc', 'ilike', msgfrom),
-                        ],
+            talks_by_ref = HelpdeskTalk.search([
+                    ('message_id', 'in', references)
                     ])
-                if helpdesks:
-                    helpdesk = helpdesks[0]
+            if talks_by_ref:
+                helpdesk = talks_by_ref[0].helpdesk
 
-            # Change pending status
-            if helpdesk:
-                cls.write([helpdesk], {'state': 'pending'})
+            # check if a new talk is related with recent helpdesk
+            if not helpdesk:
+                for new_talk in new_talks:
+                    if new_talk.message_id in references:
+                        helpdesk = new_talk.helpdesk
+                        break
 
             # Helpdesk
-            if not helpdesk:
+            if helpdesk:
+                helpdesks_to_write.add(helpdesk)
+            else:
                 party, address = GetMail.get_party_from_email(msgfrom)
                 helpdesk = Helpdesk()
                 helpdesk.name = msgsubject
@@ -606,7 +599,6 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 helpdesk.party = party if party else None
                 helpdesk.address = address if address else None
                 helpdesk.message_id = msgeid
-                helpdesk.smtp_server = smtp_server
                 helpdesk.save()
 
             # Helpdesk talk
@@ -616,32 +608,48 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             helpdesk_talk.helpdesk = helpdesk
             helpdesk_talk.message = msgbody
             helpdesk_talk.unread = True
+            helpdesk_talk.message_id = msgeid
             helpdesk_talk.save()
+            new_talks.append(helpdesk_talk)
 
             # Attachments
             if attachments:
-                i = 0
+                # - Attachment name is unique. Skip reapeat filename
+                # - If there are another same filename, write
+                attachment_names = set()
                 for attachment in message.attachments:
                     try:
                         fname = GetMail.get_filename(attachment[0])
                     except:
                         continue
 
-                    try:
+                    if fname in attachment_names:
+                        continue
+                    attachment_names.add(fname)
+
+                    attatchs = Attachment.search([
+                            ('name', 'ilike', fname),
+                            ('resource', '=', '%s' % (helpdesk)),
+                            ])
+                    if attatchs:
+                        attach, = attatchs
+                    else:
                         attach = Attachment()
-                        attach.name = '%s-%s' % (i, fname)
-                        attach.type = 'data'
-                        attach.data = attachment[1]
+                        attach.name = fname
                         attach.resource = '%s' % (helpdesk)
+                        attach.type = 'data'
+                    attach.data = attachment[1]
+                    try:
                         attach.save()
                     except TypeError, e:
                         logging.getLogger('Helpdesk').warning(
-                            'Email: %s. %s' % (msgeid, e))
+                            'Email Attachment: %s. %s' % (msgeid, e))
                         continue
                     except:
                         continue
-                    i += 1
-        return True
+
+        if helpdesks_to_write:
+            cls.write(list(helpdesks_to_write), {'state': 'pending'})
 
 
 class HelpdeskTalk(ModelSQL, ModelView):
@@ -656,6 +664,7 @@ class HelpdeskTalk(ModelSQL, ModelView):
     display_text = fields.Function(fields.Text('Display Text'),
         'get_display_text')
     unread = fields.Boolean('Unread')
+    message_id = fields.Char('Message ID')
 
     @classmethod
     def __setup__(cls):
