@@ -13,7 +13,7 @@ from html2text import html2text
 from sql.aggregate import Count
 from trytond.model import Workflow, ModelView, ModelSQL, fields
 from trytond.pool import Pool
-from trytond.pyson import Eval
+from trytond.pyson import Eval, If, Equal, In
 from trytond.transaction import Transaction
 import mimetypes
 import dateutil.tz
@@ -321,6 +321,12 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         default = default.copy()
         default['attachments'] = None
         return super(Helpdesk, cls).copy(helpdesks, default=default)
+
+    @classmethod
+    def view_attributes(cls):
+        return [('/tree', 'colors',
+                If(In(Eval('state', ''), ['cancel', 'done']), 'grey', \
+                If(Equal(Eval('state', ''), 'open'), 'red', 'black')))]
 
     @classmethod
     def _talk(cls, helpdesks):

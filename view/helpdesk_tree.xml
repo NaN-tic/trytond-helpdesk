@@ -2,13 +2,15 @@
 <!-- This file is part of the helpdesk module for Tryton.
 The COPYRIGHT file at the top level of this repository contains the full
 copyright notices and license terms. -->
-<tree string="Helpdesk" colors="If(In(Eval('state', ''), ['cancel', 'done']), 'grey', If(Equal(Eval('state', ''), 'open'), 'red', 'black'))">
-    <field name="date"/>
+<tree string="Helpdesk">
+    <field name="date" widget="date"/>
+    <field name="date" widget="time" string="Time"/>
     <field name="party"/>
     <field name="email_from"/>
     <field name="name"/>
     <field name="employee"/>
     <field name="priority"/>
     <field name="state"/>
-    <field name="last_talk"/>
+    <field name="last_talk" widget="date"/>
+    <field name="last_talk" widget="time" string="Time Last Talk"/>
 </tree>

@@ -38,7 +38,9 @@ copyright notices and license terms. -->
             <field name="name">Helpdesks</field>
             <field name="res_model">helpdesk</field>
             <field name="domain"></field>
-            <field name="context">{'kind': 'generic'}</field>
+            <field name="context"
+                eval="{'kind': 'generic'}"
+                pyson="1"/>
         </record>
         <record model="ir.action.act_window.view" id="act_helpdesk_view1">
             <field name="sequence" eval="10"/>
@@ -64,35 +66,45 @@ copyright notices and license terms. -->
             id="act_helpdesk_domain_helpdesk_unreads">
             <field name="name">Unreads</field>
             <field name="sequence" eval="10"/>
-            <field name="domain">[('unread','=',True),('employee.id', '=', Eval('context', {}).get('employee', -1))]</field>
+            <field name="domain"
+                eval="[('unread','=',True),('employee.id', '=', Eval('context', {}).get('employee', -1))]"
+                pyson="1"/>
             <field name="act_window" ref="act_helpdesk"/>
         </record>
         <record model="ir.action.act_window.domain"
             id="act_helpdesk_domain_helpdesk_pending">
             <field name="name">Pending</field>
             <field name="sequence" eval="20"/>
-            <field name="domain">[('state', 'in', ['pending']), ('employee.id', '=', Eval('context', {}).get('employee', -1))]</field>
+            <field name="domain"
+                eval="[('state', 'in', ['pending']), ('employee.id', '=', Eval('context', {}).get('employee', -1))]"
+                pyson="1"/>
             <field name="act_window" ref="act_helpdesk"/>
         </record>
         <record model="ir.action.act_window.domain"
             id="act_helpdesk_domain_helpdesk_open">
             <field name="name">Open</field>
             <field name="sequence" eval="30"/>
-            <field name="domain">[('state', 'in', ['open']),('employee.id', '=', Eval('context', {}).get('employee', -1))]</field>
+            <field name="domain"
+                eval="[('state', 'in', ['open']),('employee.id', '=', Eval('context', {}).get('employee', -1))]"
+                pyson="1"/>
             <field name="act_window" ref="act_helpdesk"/>
         </record>
         <record model="ir.action.act_window.domain"
             id="act_helpdesk_domain_helpdesk_done">
             <field name="name">Done</field>
             <field name="sequence" eval="30"/>
-            <field name="domain">[('state', 'in', ['done']),('employee.id', '=', Eval('context', {}).get('employee', -1))]</field>
+            <field name="domain"
+                eval="[('state', 'in', ['done']),('employee.id', '=', Eval('context', {}).get('employee', -1))]"
+                pyson="1"/>
             <field name="act_window" ref="act_helpdesk"/>
         </record>
         <record model="ir.action.act_window.domain"
             id="act_helpdesk_domain_helpdesk_all_my">
             <field name="name">All</field>
             <field name="sequence" eval="40"/>
-            <field name="domain">[('employee.id', '=', Eval('context', {}).get('employee', -1))]</field>
+            <field name="domain"
+                eval="[('employee.id', '=', Eval('context', {}).get('employee', -1))]"
+                pyson="1"/>
             <field name="act_window" ref="act_helpdesk"/>
         </record>
 
@@ -121,28 +133,36 @@ copyright notices and license terms. -->
             id="act_all_helpdesk_domain_helpdesk_unreads">
             <field name="name">Unreads</field>
             <field name="sequence" eval="10"/>
-            <field name="domain">[('unread','=',True)]</field>
+            <field name="domain"
+                eval="[('unread','=',True)]"
+                pyson="1"/>
             <field name="act_window" ref="act_all_helpdesk"/>
         </record>
         <record model="ir.action.act_window.domain"
             id="act_all_helpdesk_domain_helpdesk_pending">
             <field name="name">Pending</field>
             <field name="sequence" eval="20"/>
-            <field name="domain">[('state', 'in', ['pending'])]</field>
+            <field name="domain"
+                eval="[('state', 'in', ['pending'])]"
+                pyson="1"/>
             <field name="act_window" ref="act_all_helpdesk"/>
         </record>
         <record model="ir.action.act_window.domain"
             id="act_all_helpdesk_domain_helpdesk_open">
             <field name="name">Open</field>
             <field name="sequence" eval="30"/>
-            <field name="domain">[('state', 'in', ['open'])]</field>
+            <field name="domain"
+                eval="[('state', 'in', ['open'])]"
+                pyson="1"/>
             <field name="act_window" ref="act_all_helpdesk"/>
         </record>
         <record model="ir.action.act_window.domain"
             id="act_all_helpdesk_domain_helpdesk_done">
             <field name="name">Done</field>
             <field name="sequence" eval="30"/>
-            <field name="domain">[('state', 'in', ['done'])]</field>
+            <field name="domain"
+                eval="[('state', 'in', ['done'])]"
+                pyson="1"/>
             <field name="act_window" ref="act_all_helpdesk"/>
         </record>
         <record model="ir.action.act_window.domain"
