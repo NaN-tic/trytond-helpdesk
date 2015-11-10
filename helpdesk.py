@@ -132,7 +132,6 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     kind = fields.Selection([
             ('generic', 'Generic'),
             ], 'Kind')
-    smtp_server = fields.Many2One('smtp.server', 'SMTP Server')
 
     @classmethod
     def __setup__(cls):
@@ -150,6 +149,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 'no_user_email': 'No E-Mail ID Found for your Company '
                     'address!',
                 'no_from_valid': 'Not valid from email!',
+                'no_server_smtp': 'Not found SMTP server. '
+                    'Configure an SMTP server related with Helpdesk!',
                 'no_recepients_valid': 'Not valid recepients email!',
                 'smtp_error':
                     'Wrong connection to SMTP server. Not send email.',
@@ -376,30 +377,37 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     @classmethod
     @ModelView.button
     def talk_email(cls, helpdesks):
-        SMTP = Pool().get('smtp.server')
         for helpdesk in helpdesks:
             if not helpdesk.email_from:
                 cls.raise_user_error('no_email_from')
             if not helpdesk.message:
                 cls.raise_user_error('no_message')
-        server = SMTP.get_smtp_server_from_model('helpdesk')
-        cls.send_email(helpdesks, server)  # Send email
+        cls.send_email(helpdesks)  # Send email
         cls._talk(helpdesks)
         cls.write(helpdesks, {'message': None})
 
     @classmethod
-    def send_email(cls, helpdesks, server):
+    def send_email(cls, helpdesks):
         pool = Pool()
+        SMTP = pool.get('smtp.server')
         User = pool.get('res.user')
+        HelpdeskConfiguration = pool.get('helpdesk.configuration')
+
+        helpdesk_configuration = HelpdeskConfiguration(1)
         user = User(Transaction().user)
         from_ = user.email
         signature = ('\n\n--\n%s' % user.signature
             if user.signature else user.name)
-        if server.smtp_use_email:
-            from_ = server.smtp_email
+
         for helpdesk in helpdesks:
-            if not from_:
-                from_ = helpdesk.smtp_server.smtp_email
+            server = getattr(helpdesk_configuration, 'smtp_%s' % helpdesk.kind,
+                None)
+            if not server:
+                server = SMTP.get_smtp_server_from_model('helpdesk')
+            if not server:
+                cls.raise_user_error('no_server_smtp')
+
+            from_ = server.smtp_email
             if not helpdesk.email_from:
                 cls.raise_user_error('no_email_from')
             if not helpdesk.message:
