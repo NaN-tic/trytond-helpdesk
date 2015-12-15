@@ -290,7 +290,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
 
     @staticmethod
     def default_priority():
-        return '4'
+        return '3'
 
     @staticmethod
     def default_date():
