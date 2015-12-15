@@ -530,8 +530,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         cls._log(helpdesks, keyword)
 
     @classmethod
-    def getmail(cls, messages, attachments=None):
-        '''Get messages and load in helpdesk talks'''
+    def getmail(cls, server, messages):
+        'Get messages and load in helpdesk talks'
         pool = Pool()
         GetMail = pool.get('getmail.server')
         Helpdesk = pool.get('helpdesk')
@@ -599,6 +599,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 helpdesk.party = party if party else None
                 helpdesk.address = address if address else None
                 helpdesk.message_id = msgeid
+                helpdesk.kind = server.kind if server.kind else 'generic'
                 helpdesk.save()
 
             # Helpdesk talk
@@ -613,7 +614,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             new_talks.append(helpdesk_talk)
 
             # Attachments
-            if attachments:
+            if server.attachment:
                 # - Attachment name is unique. Skip reapeat filename
                 # - If there are another same filename, write
                 attachment_names = set()

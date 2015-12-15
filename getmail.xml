@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- This file is part helpdesk module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full
+copyright notices and license terms. -->
+<tryton>
+    <data depends="getmail">
+        <record model="ir.ui.view" id="getmail_server_view_form">
+            <field name="model">getmail.server</field>
+            <field name="inherit" ref="getmail.getmail_server_view_form"/>
+            <field name="name">getmail_server_form</field>
+        </record>
+    </data>
+</tryton>
