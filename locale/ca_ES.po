@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -18,6 +18,12 @@ msgctxt "error:helpdesk:"
 msgid "No E-Mail ID Found for your Company address!"
 msgstr ""
 "No s'ha trobat cap correu electrònic per a la vostra adreça a la empresa!"
+
+msgctxt "error:helpdesk:"
+msgid "Not found SMTP server. Configure an SMTP server related with Helpdesk!"
+msgstr ""
+"No s'ha trobat el servidor SMTP. Configura un servidor SMTP relacionat amb "
+"el Suport."
 
 msgctxt "error:helpdesk:"
 msgid "Not valid from email!"
@@ -141,10 +147,6 @@ msgctxt "field:helpdesk,rec_name:"
 msgid "Name"
 msgstr "Nom del camp"
 
-msgctxt "field:helpdesk,smtp_server:"
-msgid "SMTP Server"
-msgstr "Servidor SMTP"
-
 msgctxt "field:helpdesk,state:"
 msgid "Status"
 msgstr "Estat"
@@ -194,6 +196,30 @@ msgid "Write Date"
 msgstr "Data modificació"
 
 msgctxt "field:helpdesk-ir.attachment,write_uid:"
+msgid "Write User"
+msgstr "Usuari modificació"
+
+msgctxt "field:helpdesk.configuration,create_date:"
+msgid "Create Date"
+msgstr "Data creació"
+
+msgctxt "field:helpdesk.configuration,create_uid:"
+msgid "Create User"
+msgstr "Usuari creació"
+
+msgctxt "field:helpdesk.configuration,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:helpdesk.configuration,rec_name:"
+msgid "Name"
+msgstr "Nom"
+
+msgctxt "field:helpdesk.configuration,write_date:"
+msgid "Write Date"
+msgstr "Data modificació"
+
+msgctxt "field:helpdesk.configuration,write_uid:"
 msgid "Write User"
 msgstr "Usuari modificació"
 
@@ -269,6 +295,10 @@ msgctxt "field:helpdesk.talk,message:"
 msgid "Message"
 msgstr "Missatge"
 
+msgctxt "field:helpdesk.talk,message_id:"
+msgid "Message ID"
+msgstr "Missatge ID"
+
 msgctxt "field:helpdesk.talk,rec_name:"
 msgid "Name"
 msgstr "Nom del camp"
@@ -310,6 +340,10 @@ msgctxt "model:helpdesk-ir.attachment,name:"
 msgid "Helpdesk - Attachment"
 msgstr "Suport - Adjunt"
 
+msgctxt "model:helpdesk.configuration,name:"
+msgid "Helpdesk Configuration"
+msgstr "Configuració suport"
+
 msgctxt "model:helpdesk.log,name:"
 msgid "Helpdesk Log"
 msgstr "Log de suport"
@@ -325,6 +359,10 @@ msgstr "Tots els suports"
 msgctxt "model:ir.action,name:act_helpdesk"
 msgid "Helpdesks"
 msgstr "Suport"
+
+msgctxt "model:ir.action,name:act_helpdesk_configuration"
+msgid "Helpdesk Configuration"
+msgstr "Configuració suport"
 
 msgctxt ""
 "model:ir.action.act_window.domain,name:act_all_helpdesk_domain_helpdesk_all_my"
@@ -376,6 +414,10 @@ msgctxt ""
 msgid "Unreads"
 msgstr "No llegits"
 
+msgctxt "model:ir.ui.menu,name:main_menu_helpdesk_configuration"
+msgid "Configuration"
+msgstr "Configuració"
+
 msgctxt "model:ir.ui.menu,name:menu_all_helpdesk"
 msgid "All Helpdesk"
 msgstr "Tots els suports"
@@ -384,9 +426,17 @@ msgctxt "model:ir.ui.menu,name:menu_helpdesk"
 msgid "Helpdesks"
 msgstr "Suport"
 
+msgctxt "model:ir.ui.menu,name:menu_helpdesk_configuration"
+msgid "Helpdesk Configuration"
+msgstr "Configuració suport"
+
 msgctxt "model:res.group,name:group_helpdesk"
 msgid "Helpdesk"
 msgstr "Suport"
+
+msgctxt "model:res.group,name:group_helpdesk_admin"
+msgid "Helpdesk Administrator"
+msgstr "Administrador soport"
 
 msgctxt "model:res.group,name:group_helpdesk_manager"
 msgid "Helpdesk Manager"
@@ -428,9 +478,17 @@ msgctxt "selection:helpdesk,state:"
 msgid "Pending"
 msgstr "Pendent"
 
+msgctxt "view:helpdesk.configuration:"
+msgid "Helpdesk Configuration"
+msgstr "Configuració suport"
+
 msgctxt "view:helpdesk.log:"
 msgid "Helpdesk Logs"
 msgstr "Logs de suport"
+
+msgctxt "view:helpdesk.log:"
+msgid "Time"
+msgstr "Hora"
 
 msgctxt "view:helpdesk.talk:"
 msgid "Helpdesk History"
@@ -492,6 +550,18 @@ msgctxt "view:helpdesk:"
 msgid "Send Email"
 msgstr "Envia correu electrònic"
 
+msgctxt "view:helpdesk:"
+msgid "Time"
+msgstr "Hora"
+
+msgctxt "view:helpdesk:"
+msgid "Time Last Talk"
+msgstr "Hora última conversa"
+
 msgctxt "view:ir.attachment:"
 msgid "Attachments"
 msgstr "Adjunts"
+
+msgctxt "view:ir.attachment:"
+msgid "Time"
+msgstr "Hora"
