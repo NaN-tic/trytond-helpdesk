@@ -279,6 +279,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                     if contact.type == 'email':
                         self.email_from = contact.email
                         break
+        else:
+            self.contact = None
 
     @staticmethod
     def default_state():
