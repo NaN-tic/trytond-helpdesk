@@ -137,7 +137,7 @@ msgstr "Adjunts"
 
 msgctxt "field:helpdesk,party:"
 msgid "Party"
-msgstr "Tercers"
+msgstr "Tercer"
 
 msgctxt "field:helpdesk,priority:"
 msgid "Priority"
@@ -512,7 +512,7 @@ msgstr "Adjunts"
 
 msgctxt "view:helpdesk:"
 msgid "Close"
-msgstr "Tancat"
+msgstr "Tanca"
 
 msgctxt "view:helpdesk:"
 msgid "Extra Information"
@@ -532,7 +532,7 @@ msgstr "Log"
 
 msgctxt "view:helpdesk:"
 msgid "Open"
-msgstr "Per obrir"
+msgstr "Obre"
 
 msgctxt "view:helpdesk:"
 msgid "Pending"
