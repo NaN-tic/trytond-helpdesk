@@ -139,7 +139,7 @@ msgstr "Adjuntos"
 
 msgctxt "field:helpdesk,party:"
 msgid "Party"
-msgstr "Terceros"
+msgstr "Tercero"
 
 msgctxt "field:helpdesk,priority:"
 msgid "Priority"
