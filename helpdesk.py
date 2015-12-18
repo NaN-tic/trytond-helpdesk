@@ -267,22 +267,18 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         Address = pool.get('party.address')
         Contact = pool.get('party.contact_mechanism')
 
-        changes = {}
         if self.party:
             addresses = Address.search([('party', '=', self.party)])
             for address in addresses:
-                changes['contact'] = address.id
+                self.contact = address
                 if address.email and not self.email_from:
-                    changes['email_from'] = address.email
+                    self.email_from = address.email
                 break
-            if not changes.get('email_from') and not self.email_from:
+            if not self.email_from:
                 for contact in Contact.search([('party', '=', self.party)]):
                     if contact.type == 'email':
-                        changes['email_from'] = contact.email
+                        self.email_from = contact.email
                         break
-        if not changes.get('contact'):
-            changes['contact'] = None
-        return changes
 
     @staticmethod
     def default_state():
