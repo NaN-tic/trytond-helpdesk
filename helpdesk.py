@@ -344,6 +344,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             talk.email = user.email or None
             talk.helpdesk = helpdesk
             talk.message = helpdesk.message
+            talk.message_id = helpdesk.message_id
             talk.unread = False
             talk.save()
             for talk in helpdesk.talks:
