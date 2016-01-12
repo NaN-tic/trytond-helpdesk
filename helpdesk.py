@@ -484,8 +484,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
 
             #  write helpdesk values
             vals = {}
-            if not helpdesk.message_id:
-                vals['message_id'] = msg.get('Message-ID')
+            vals['message_id'] = msg.get('Message-ID')
             if helpdesk.add_attachments:
                 vals['add_attachments'] = [('remove',
                     [x.id for x in helpdesk.add_attachments])]
