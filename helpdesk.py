@@ -586,7 +586,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                         break
 
             # Helpdesk
-            if helpdesk:
+            if helpdesk and helpdesk.state in ('draft', 'done'):
                 helpdesks_to_write.add(helpdesk)
             else:
                 party, address = GetMail.get_party_from_email(msgfrom)
