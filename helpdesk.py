@@ -574,7 +574,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             helpdesk = None
             talks_by_ref = HelpdeskTalk.search([
                     ('message_id', 'in', references)
-                    ])
+                    ], limit=1)
             if talks_by_ref:
                 helpdesk = talks_by_ref[0].helpdesk
 
@@ -588,7 +588,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             # Helpdesk
             if helpdesk and helpdesk.state in ('draft', 'done'):
                 helpdesks_to_write.add(helpdesk)
-            else:
+
+            if not helpdesk:
                 party, address = GetMail.get_party_from_email(msgfrom)
                 helpdesk = Helpdesk()
                 helpdesk.name = msgsubject
