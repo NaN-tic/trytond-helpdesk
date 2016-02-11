@@ -84,7 +84,10 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             },
         depends=['state'])
     create_date = fields.DateTime('Created', readonly=True)
-    closed_date = fields.DateTime('Closed', readonly=True)
+    closed_date = fields.DateTime('Closed', readonly=True,
+        states={
+            'invisible': Eval('state') != 'done',
+            })
     state = fields.Selection([
             ('draft', 'Draft'),
             ('open', 'Open'),

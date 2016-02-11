@@ -28,6 +28,8 @@ copyright notices and license terms. -->
             <field name="contact"/>
             <label name="email_from"/>
             <field name="email_from"/>
+            <label name="email_cc"/>
+            <field name="email_cc"/>
             <newline/>
             <group col="2" colspan="3" id="talks" yfill="1" yexpand="1">
                 <field name="talks" colspan="3"
@@ -54,12 +56,6 @@ copyright notices and license terms. -->
         </page>
         <page string="Related Documents" id="documents">
         </page>
-        <page string="Extra Information" id="extra">
-            <label name="closed_date"/>
-            <field name="closed_date"/>
-            <label name="email_cc"/>
-            <field name="email_cc"/>
-        </page>
         <page string="Log" id="log" col="8">
             <field name="logs"
                 view_ids="helpdesk.helpdesk_log_view_tree"/>
@@ -67,4 +63,6 @@ copyright notices and license terms. -->
     </notebook>
     <label name="state"/>
     <field name="state"/>
+    <label name="closed_date"/>
+    <field name="closed_date"/>
 </form>
