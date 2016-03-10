@@ -13,6 +13,7 @@ from html2text import html2text
 from sql.aggregate import Count
 from trytond.model import Workflow, ModelView, ModelSQL, fields
 from trytond.pool import Pool
+from trytond.tools import cursor_dict
 from trytond.pyson import Eval, If, Equal, In
 from trytond.transaction import Transaction
 import mimetypes
@@ -230,7 +231,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
 
     @classmethod
     def search_unread(cls, name, clause):
-        cursor = Transaction().cursor
+        cursor = Transaction().connection.cursor()
         unread = 't' if clause[2] else 'f'
         cursor.execute('''
             SELECT
@@ -252,7 +253,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     def get_num_attachments(cls, helpdesks, name):
         Attachment = Pool().get('ir.attachment')
         attachment = Attachment.__table__()
-        cursor = Transaction().cursor
+        cursor = Transaction().connection.cursor()
         res = {h.id: None for h in helpdesks}
         cursor.execute(*attachment.select(
             attachment.resource.as_('resource'),
@@ -262,7 +263,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             group_by=attachment.resource))
         res.update({
                 int(r['resource'].split(',')[1]): r[name]
-                for r in cursor.dictfetchall()})
+                for r in cursor_dict(cursor)})
         return res
 
     @fields.depends('party', 'email_from')
