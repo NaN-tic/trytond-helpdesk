@@ -571,10 +571,9 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 references.append(message.in_reply_to)
             msgsubject = message.title or 'Not subject'
             msgdate = message.date
-            message = message.body
             # not replace html2text an email string: "User <user@domain.com>"
-            message = re.sub('<([^<]*@[^>]*)>', '\g<1>', message, re.M|re.I)
-            msgbody = html2text(message.replace('\n', '<br>'))
+            msgbody = re.sub('<([^<]*@[^>]*)>', '\g<1>', message.body, re.M|re.I)
+            msgbody = html2text(msgbody.replace('\n', '<br>'))
             logger.info('Process email: %s' % (msgeid))
 
             # Search helpdesk by msg reference, msg in reply to or
