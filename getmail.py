@@ -5,10 +5,10 @@ from trytond.model import fields
 from trytond.pool import PoolMeta
 
 __all__ = ['GetmailServer']
-__metaclass__ = PoolMeta
 
 
 class GetmailServer:
+    __metaclass__ = PoolMeta
     __name__ = 'getmail.server'
     kind = fields.Selection([
             ('generic', 'Generic'),
