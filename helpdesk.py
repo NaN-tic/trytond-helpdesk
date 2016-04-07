@@ -16,6 +16,7 @@ from trytond.pool import Pool
 from trytond.tools import cursor_dict
 from trytond.pyson import Eval, If, Equal, In
 from trytond.transaction import Transaction
+from trytond.sendmail import SMTPDataManager, sendmail_transactional
 import mimetypes
 import dateutil.tz
 import re
@@ -479,13 +480,9 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                     'Content-Transfer-Encoding', 'base64')
                 msg.attach(attach)
 
-            try:
-                smtp_server = server.get_smtp_server()
-                smtp_server.sendmail(from_, recipients +
-                    cc_addresses, msg.as_string())
-                smtp_server.quit()
-            except:
-                cls.raise_user_error('smtp_error')
+            datamanager = SMTPDataManager()
+            datamanager._server = server.get_smtp_server()
+            sendmail_transactional(from_, recipients, msg, datamanager=datamanager)
 
             #  write helpdesk values
             vals = {}
