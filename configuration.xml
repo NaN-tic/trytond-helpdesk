@@ -5,15 +5,15 @@ copyright notices and license terms. -->
 <tryton>
     <data>
         <menuitem
-            id="main_menu_helpdesk_configuration"
+            id="menu_configuration"
             name="Configuration"
-            parent="helpdesk.menu_helpdesk"
+            parent="menu_helpdesk"
             sequence="0"
             icon="tryton-preferences"/>
         <record model="ir.ui.menu-res.group"
             id="menu_configuration_group_helpdesk_admin">
-            <field name="menu" ref="main_menu_helpdesk_configuration"/>
-            <field name="group" ref="helpdesk.group_helpdesk_admin"/>
+            <field name="menu" ref="menu_configuration"/>
+            <field name="group" ref="group_helpdesk_admin"/>
         </record>
 
         <record model="ir.ui.view" id="helpdesk_configuration_view_form">
@@ -22,22 +22,20 @@ copyright notices and license terms. -->
             <field name="name">configuration_form</field>
         </record>
 
-        <record model="ir.action.act_window" id="act_helpdesk_configuration">
+        <record model="ir.action.act_window"
+                id="act_helpdesk_configuration_form">
             <field name="name">Helpdesk Configuration</field>
             <field name="res_model">helpdesk.configuration</field>
         </record>
-
-        <record model="ir.action.act_window.view" id="act_helpdesk_configuration_form_view">
-            <field name="sequence" eval="10"/>
+        <record model="ir.action.act_window.view"
+                id="act_helpdesk_configuration_view1">
+            <field name="act_window" ref="act_helpdesk_configuration_form"/>
+            <field name="sequence" eval="1"/>
             <field name="view" ref="helpdesk_configuration_view_form"/>
-            <field name="act_window" ref="act_helpdesk_configuration"/>
         </record>
 
-        <menuitem
-                id="menu_helpdesk_configuration"
-                icon="tryton-list"
-                name="Helpdesk Configuration"
-                parent="main_menu_helpdesk_configuration"
-                action="act_helpdesk_configuration"/>
+        <menuitem id="menu_helpdesk_configuration"
+            action="act_helpdesk_configuration_form"
+            parent="menu_configuration" sequence="0" icon="tryton-list"/>
     </data>
 </tryton>
