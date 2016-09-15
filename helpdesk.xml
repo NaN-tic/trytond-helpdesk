@@ -14,6 +14,10 @@ copyright notices and license terms. -->
         <record model="res.group" id="group_helpdesk">
             <field name="name">Helpdesk</field>
         </record>
+        <record model="res.user-res.group" id="user_admin_group_helpdesk_admin">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="group_helpdesk_admin"/>
+        </record>
         <record model="res.user-res.group" id="user_admin_group_helpdesk_manager">
             <field name="user" ref="res.user_admin"/>
             <field name="group" ref="group_helpdesk_manager"/>
