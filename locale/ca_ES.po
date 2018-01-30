@@ -541,10 +541,6 @@ msgid "Pending"
 msgstr "Pendent"
 
 msgctxt "view:helpdesk:"
-msgid "Related Documents"
-msgstr "Document relacionat"
-
-msgctxt "view:helpdesk:"
 msgid "Reset to Draft"
 msgstr "Restaura a esborrany"
 
