@@ -542,10 +542,6 @@ msgid "Pending"
 msgstr "Pendiente"
 
 msgctxt "view:helpdesk:"
-msgid "Related Documents"
-msgstr "Documentos relacionados"
-
-msgctxt "view:helpdesk:"
 msgid "Reset to Draft"
 msgstr "Restaurar a borrador"
 

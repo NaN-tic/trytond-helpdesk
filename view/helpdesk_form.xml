@@ -49,8 +49,6 @@ copyright notices and license terms. -->
             <field name="attachments" view_ids="helpdesk.helpdesk_attachment_view_tree" colspan="6"/>
             <field name="add_attachments" view_ids="helpdesk.helpdesk_attachment_view_tree" colspan="6"/>
         </page>
-        <page string="Related Documents" id="documents">
-        </page>
         <page string="Log" id="log" col="8">
             <field name="logs"
                 view_ids="helpdesk.helpdesk_log_view_tree"/>
