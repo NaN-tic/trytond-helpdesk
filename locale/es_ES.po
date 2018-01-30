@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -84,11 +84,11 @@ msgstr "Contacto"
 
 msgctxt "field:helpdesk,create_date:"
 msgid "Create Date"
-msgstr "Fecha creación"
+msgstr "Fecha de creación"
 
 msgctxt "field:helpdesk,create_uid:"
 msgid "Create User"
-msgstr "Usuario creación"
+msgstr "Usuario de creación"
 
 msgctxt "field:helpdesk,date:"
 msgid "Date"
@@ -164,11 +164,11 @@ msgstr "No leído"
 
 msgctxt "field:helpdesk,write_date:"
 msgid "Write Date"
-msgstr "Fecha modificación"
+msgstr "Fecha de modificación"
 
 msgctxt "field:helpdesk,write_uid:"
 msgid "Write User"
-msgstr "Usuario modificación"
+msgstr "Usuario de modificación"
 
 msgctxt "field:helpdesk-ir.attachment,attachment:"
 msgid "Attachment"
@@ -176,11 +176,11 @@ msgstr "Adjunto"
 
 msgctxt "field:helpdesk-ir.attachment,create_date:"
 msgid "Create Date"
-msgstr "Fecha creación"
+msgstr "Fecha de creación"
 
 msgctxt "field:helpdesk-ir.attachment,create_uid:"
 msgid "Create User"
-msgstr "Usuario creación"
+msgstr "Usuario de creación"
 
 msgctxt "field:helpdesk-ir.attachment,helpdesk:"
 msgid "Helpdesk"
@@ -196,19 +196,19 @@ msgstr "Nombre"
 
 msgctxt "field:helpdesk-ir.attachment,write_date:"
 msgid "Write Date"
-msgstr "Fecha modificación"
+msgstr "Fecha de modificación"
 
 msgctxt "field:helpdesk-ir.attachment,write_uid:"
 msgid "Write User"
-msgstr "Usuario modificación"
+msgstr "Usuario de modificación"
 
 msgctxt "field:helpdesk.configuration,create_date:"
 msgid "Create Date"
-msgstr "Fecha creación"
+msgstr "Fecha de creación"
 
 msgctxt "field:helpdesk.configuration,create_uid:"
 msgid "Create User"
-msgstr "Usuario creación"
+msgstr "Usuario de creación"
 
 msgctxt "field:helpdesk.configuration,id:"
 msgid "ID"
@@ -220,19 +220,19 @@ msgstr "Nombre"
 
 msgctxt "field:helpdesk.configuration,write_date:"
 msgid "Write Date"
-msgstr "Fecha modificación"
+msgstr "Fecha de modificación"
 
 msgctxt "field:helpdesk.configuration,write_uid:"
 msgid "Write User"
-msgstr "Usuario modificación"
+msgstr "Usuario de modificación"
 
 msgctxt "field:helpdesk.log,create_date:"
 msgid "Create Date"
-msgstr "Fecha creación"
+msgstr "Fecha de creación"
 
 msgctxt "field:helpdesk.log,create_uid:"
 msgid "Create User"
-msgstr "Usuario creación"
+msgstr "Usuario de creación"
 
 msgctxt "field:helpdesk.log,date:"
 msgid "Date"
@@ -260,19 +260,19 @@ msgstr "Usuario"
 
 msgctxt "field:helpdesk.log,write_date:"
 msgid "Write Date"
-msgstr "Fecha modificación"
+msgstr "Fecha de modificación"
 
 msgctxt "field:helpdesk.log,write_uid:"
 msgid "Write User"
-msgstr "Usuario modificación"
+msgstr "Usuario de modificación"
 
 msgctxt "field:helpdesk.talk,create_date:"
 msgid "Create Date"
-msgstr "Fecha creación"
+msgstr "Fecha de creación"
 
 msgctxt "field:helpdesk.talk,create_uid:"
 msgid "Create User"
-msgstr "Usuario creación"
+msgstr "Usuario de creación"
 
 msgctxt "field:helpdesk.talk,date:"
 msgid "Date"
@@ -312,11 +312,11 @@ msgstr "No leído"
 
 msgctxt "field:helpdesk.talk,write_date:"
 msgid "Write Date"
-msgstr "Fecha modificación"
+msgstr "Fecha de modificación"
 
 msgctxt "field:helpdesk.talk,write_uid:"
 msgid "Write User"
-msgstr "Usuario modificación"
+msgstr "Usuario de modificación"
 
 msgctxt "help:helpdesk,add_attachments:"
 msgid ""
@@ -355,6 +355,10 @@ msgctxt "model:helpdesk.talk,name:"
 msgid "Helpdesk Talk"
 msgstr "Conversación de soporte"
 
+msgctxt "model:ir.action,name:"
+msgid "Helpdesk Configuration"
+msgstr "Configuración soporte"
+
 msgctxt "model:ir.action,name:act_all_helpdesk"
 msgid "All Helpdesk"
 msgstr "Todos los soportes"
@@ -363,7 +367,7 @@ msgctxt "model:ir.action,name:act_helpdesk"
 msgid "Helpdesks"
 msgstr "Soporte"
 
-msgctxt "model:ir.action,name:act_helpdesk_configuration"
+msgctxt "model:ir.action,name:act_helpdesk_configuration_form"
 msgid "Helpdesk Configuration"
 msgstr "Configuración soporte"
 
@@ -417,7 +421,7 @@ msgctxt ""
 msgid "Unreads"
 msgstr "No leídos"
 
-msgctxt "model:ir.ui.menu,name:main_menu_helpdesk_configuration"
+msgctxt "model:ir.ui.menu,name:"
 msgid "Configuration"
 msgstr "Configuración"
 
