@@ -2,5 +2,5 @@
 <!-- This file is part helpdesk_configuration module for Tryton.
 The COPYRIGHT file at the top level of this repository contains the full
 copyright notices and license terms. -->
-<form string="Helpdesk Configuration">
+<form>
 </form>

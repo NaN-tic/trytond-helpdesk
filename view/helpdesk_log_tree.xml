@@ -2,7 +2,7 @@
 <!-- This file is part of the helpdesk module for Tryton.
 The COPYRIGHT file at the top level of this repository contains the full
 copyright notices and license terms. -->
-<tree string="Helpdesk Logs">
+<tree>
     <field name="name"/>
     <field name="date" widget="date"/>
     <field name="date" widget="time" string="Time"/>
