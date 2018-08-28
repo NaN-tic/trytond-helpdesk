@@ -177,6 +177,43 @@ copyright notices and license terms. -->
             <field name="act_window" ref="act_all_helpdesk"/>
         </record>
 
+        <!-- buttons -->
+        <record model="ir.model.button" id="add_reply_button">
+            <field name="name">add_reply</field>
+            <field name="string">Add Last Mail for Replying</field>
+            <field name="model" search="[('model', '=', 'helpdesk')]"/>
+        </record>
+        <record model="ir.model.button" id="talk_email_button">
+            <field name="name">talk_email</field>
+            <field name="string">Send Email</field>
+            <field name="model" search="[('model', '=', 'helpdesk')]"/>
+        </record>
+        <record model="ir.model.button" id="talk_note_button">
+            <field name="name">talk_note</field>
+            <field name="string">Add Note</field>
+            <field name="model" search="[('model', '=', 'helpdesk')]"/>
+        </record>
+        <record model="ir.model.button" id="open_button">
+            <field name="name">open</field>
+            <field name="string">Open</field>
+            <field name="model" search="[('model', '=', 'helpdesk')]"/>
+        </record>
+        <record model="ir.model.button" id="pending_button">
+            <field name="name">pending</field>
+            <field name="string">Pending</field>
+            <field name="model" search="[('model', '=', 'helpdesk')]"/>
+        </record>
+        <record model="ir.model.button" id="draft_button">
+            <field name="name">draft</field>
+            <field name="string">Reset to Draft</field>
+            <field name="model" search="[('model', '=', 'helpdesk')]"/>
+        </record>
+        <record model="ir.model.button" id="done_button">
+            <field name="name">done</field>
+            <field name="string">Done</field>
+            <field name="model" search="[('model', '=', 'helpdesk')]"/>
+        </record>
+
         <!-- helpdesk.talk -->
         <record model="ir.ui.view" id="helpdesk_talk_view_form">
             <field name="model">helpdesk.talk</field>

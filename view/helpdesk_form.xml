@@ -37,12 +37,12 @@ copyright notices and license terms. -->
                     view_ids="helpdesk.helpdesk_talk_view2_tree"/>
             </group>
             <group col="2" colspan="3" id="message" yfill="1" yexpand="1">
-                <button string="Add Last Mail for Replying" name="add_reply" colspan="2"/>
+                <button name="add_reply" colspan="2"/>
                 <newline/>
                 <field name="message" colspan="2"/>
                 <newline/>
-                    <button string="Send Email" name="talk_email"/>
-                    <button string="Add note" name="talk_note"/>
+                    <button name="talk_email"/>
+                    <button name="talk_note"/>
             </group>
         </page>
         <page string="Attachments" id="attachments">
@@ -62,10 +62,10 @@ copyright notices and license terms. -->
             <field name="closed_date"/>
         </group>
         <group col="8" colspan="2" id="state_buttons">
-            <button string="Open" name="open"/>
-            <button string="Pending" name="pending"/>
-            <button string="Reset to Draft" name="draft"/>
-            <button string="Close" name="done"/>
+            <button name="open"/>
+            <button name="pending"/>
+            <button name="draft"/>
+            <button name="done"/>
         </group>
     </group>
 </form>

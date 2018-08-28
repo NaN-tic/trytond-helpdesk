@@ -509,7 +509,7 @@ msgid "Add Last Mail for Replying"
 msgstr "Afegeix el darrer correu electrònic per respondre"
 
 msgctxt "view:helpdesk:"
-msgid "Add note"
+msgid "Add Note"
 msgstr "Afegeix nota"
 
 msgctxt "view:helpdesk:"
@@ -517,8 +517,8 @@ msgid "Attachments"
 msgstr "Adjunts"
 
 msgctxt "view:helpdesk:"
-msgid "Close"
-msgstr "Tanca"
+msgid "Done"
+msgstr "Realitzat"
 
 msgctxt "view:helpdesk:"
 msgid "General Information"

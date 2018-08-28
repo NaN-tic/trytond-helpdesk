@@ -510,7 +510,7 @@ msgid "Add Last Mail for Replying"
 msgstr "Añadir el último correo para responder"
 
 msgctxt "view:helpdesk:"
-msgid "Add note"
+msgid "Add Note"
 msgstr "Añadir nota"
 
 msgctxt "view:helpdesk:"
@@ -518,8 +518,8 @@ msgid "Attachments"
 msgstr "Adjuntos"
 
 msgctxt "view:helpdesk:"
-msgid "Close"
-msgstr "Cerrar"
+msgid "Done"
+msgstr "Realizado"
 
 msgctxt "view:helpdesk:"
 msgid "General Information"
