@@ -7,8 +7,7 @@ from trytond.pool import PoolMeta
 __all__ = ['GetmailServer']
 
 
-class GetmailServer:
-    __metaclass__ = PoolMeta
+class GetmailServer(metaclass=PoolMeta):
     __name__ = 'getmail.server'
     kind = fields.Selection([
             ('generic', 'Generic'),

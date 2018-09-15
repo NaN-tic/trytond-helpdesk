@@ -2,13 +2,12 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
 from datetime import datetime
-from email import Utils
-from email import Encoders
 from email.header import Header
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
-from email.utils import parseaddr
+from email.encoders import encode_base64
+from email.utils import parseaddr, make_msgid
 from html2text import html2text
 from sql.aggregate import Count
 from trytond.model import Workflow, ModelView, ModelSQL, fields
@@ -458,7 +457,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                 msg['Cc'] = ', '.join(cc_addresses)
             msg['Reply-to'] = server.smtp_email
             # msg['Date']     = Utils.formatdate(localtime = 1)
-            msg['Message-ID'] = Utils.make_msgid()
+            msg['Message-ID'] = make_msgid()
 
             if helpdesk.message_id:
                 msg['In-Reply-To'] = helpdesk.message_id
@@ -473,7 +472,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
 
                 attach = MIMEBase(maintype, subtype)
                 attach.set_payload(attachment.data)
-                Encoders.encode_base64(attach)
+                encode_base64(attach)
                 attach.add_header(
                     'Content-Disposition', 'attachment', filename=filename)
                 attach.add_header(
@@ -645,7 +644,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
                     attach.data = attachment[1]
                     try:
                         attach.save()
-                    except TypeError, e:
+                    except TypeError as e:
                         logging.getLogger('Helpdesk').warning(
                             'Email Attachment: %s. %s' % (msgeid, e))
                         continue
