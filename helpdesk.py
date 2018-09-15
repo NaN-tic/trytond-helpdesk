@@ -328,11 +328,11 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         default['attachments'] = None
         return super(Helpdesk, cls).copy(helpdesks, default=default)
 
-    @classmethod
-    def view_attributes(cls):
-        return [('/tree', 'colors',
-                If(In(Eval('state', ''), ['cancel', 'done']), 'grey', \
-                If(Equal(Eval('state', ''), 'open'), 'red', 'black')))]
+    # @classmethod
+    # def view_attributes(cls):
+    #     return [('/tree', 'colors',
+    #             If(In(Eval('state', ''), ['cancel', 'done']), 'grey', \
+    #             If(Equal(Eval('state', ''), 'open'), 'red', 'black')))]
 
     @classmethod
     def _talk(cls, helpdesks):

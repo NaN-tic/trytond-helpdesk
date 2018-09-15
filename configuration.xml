@@ -4,12 +4,7 @@ The COPYRIGHT file at the top level of this repository contains the full
 copyright notices and license terms. -->
 <tryton>
     <data>
-        <menuitem
-            id="menu_configuration"
-            name="Configuration"
-            parent="menu_helpdesk"
-            sequence="0"
-            icon="tryton-preferences"/>
+        <menuitem id="menu_configuration" name="Configuration" parent="menu_helpdesk" sequence="0" icon="tryton-settings"/>
         <record model="ir.ui.menu-res.group"
             id="menu_configuration_group_helpdesk_admin">
             <field name="menu" ref="menu_configuration"/>
