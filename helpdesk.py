@@ -657,6 +657,19 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         if helpdesks_to_write:
             cls.write(list(helpdesks_to_write), {'state': 'pending'})
 
+    @classmethod
+    def search_rec_name(cls, name, clause):
+        domain = super(Helpdesk, cls).search_rec_name(name, clause)
+        if clause[1].startswith('!') or clause[1].startswith('not '):
+            bool_op = 'AND'
+        else:
+            bool_op = 'OR'
+        return [bool_op,
+            domain,
+            ('email_from',) + tuple(clause[1:]),
+            ('email_cc',) + tuple(clause[1:]),
+            ]
+
 
 class HelpdeskTalk(ModelSQL, ModelView):
     'Helpdesk Talk'
