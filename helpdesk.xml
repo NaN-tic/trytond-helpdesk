@@ -310,5 +310,43 @@ copyright notices and license terms. -->
             <field name="perm_create" eval="False"/>
             <field name="perm_delete" eval="False"/>
         </record>
+
+        <!-- Party -->
+        <record model="ir.action.act_window" id="act_generic_helpdesk_form2">
+            <field name="name">Helpdesks</field>
+            <field name="res_model">helpdesk</field>
+            <field name="domain"
+                eval="[('kind', '=', 'generic'), ('party', '=', Eval('active_id'))]"
+                pyson="1"/>
+            <field name="context"
+                eval="{'kind': 'generic'}"
+                pyson="1"/>
+        </record>
+        <record model="ir.action.keyword" id="act_open_generic_helpdesk_keyword1">
+            <field name="keyword">form_relate</field>
+            <field name="model">party.party,-1</field>
+            <field name="action" ref="act_generic_helpdesk_form2"/>
+        </record>
+        <record model="ir.action-res.group" id="act_generic_helodesk_form2-group_helpdesk">
+            <field name="action" ref="act_generic_helpdesk_form2"/>
+            <field name="group" ref="group_helpdesk"/>
+        </record>
+
+        <record model="ir.action.act_window" id="act_all_helpdesk_form2">
+            <field name="name">All Helpdesks</field>
+            <field name="res_model">helpdesk</field>
+            <field name="domain"
+                eval="[('party', '=', Eval('active_id'))]"
+                pyson="1"/>
+        </record>
+        <record model="ir.action.keyword" id="act_open_all_helpdesk_keyword1">
+            <field name="keyword">form_relate</field>
+            <field name="model">party.party,-1</field>
+            <field name="action" ref="act_all_helpdesk_form2"/>
+        </record>
+        <record model="ir.action-res.group" id="act_all_helodesk_form2-group_helpdesk">
+            <field name="action" ref="act_all_helpdesk_form2"/>
+            <field name="group" ref="group_helpdesk"/>
+        </record>
     </data>
 </tryton>
