@@ -15,6 +15,8 @@ from trytond.pool import Pool
 from trytond.tools import cursor_dict
 from trytond.pyson import Eval, If, Equal, In
 from trytond.transaction import Transaction
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 from trytond.sendmail import SMTPDataManager, sendmail_transactional
 import mimetypes
 import dateutil.tz
@@ -147,29 +149,6 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         cls._order.insert(0, ('priority', 'ASC'))
         cls._order.insert(1, ('date', 'DESC'))
         cls._order.insert(2, ('id', 'DESC'))
-        cls._error_messages.update({
-                'no_email_from': 'You must put a party email to use this '
-                    'action!',
-                'no_user': 'You must define a responsible user for this '
-                    'helpdesk in order to use this action!',
-                'no_message': 'Add a message before send an email or '
-                    'note!',
-                'no_user_email': 'No E-Mail ID Found for your Company '
-                    'address!',
-                'no_from_valid': 'Not valid from email!',
-                'no_server_smtp': 'Not found SMTP server. '
-                    'Configure an SMTP server related with Helpdesk!',
-                'no_recepients_valid': 'Not valid recepients email!',
-                'smtp_error':
-                    'Wrong connection to SMTP server. Not send email.',
-                'no_employee': 'You must select a employee in yours user '
-                    'preferences!',
-                'send': 'Send',
-                'opened': 'Opened',
-                'pending': 'Pending',
-                'drafted': 'Drafted',
-                'closed': 'Closed',
-                })
         cls._transition_state = 'state'
         cls._transitions |= set((
                 ('draft', 'open'),
@@ -343,7 +322,8 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
         reads = []
         for helpdesk in helpdesks:
             if not helpdesk.message:
-                cls.raise_user_error('no_message')
+                raise UserError(gettext('helpdesk.msg_no_message'))
+
             talk = Talk()
             talk.date = datetime.now()
             talk.email = user.email or None
@@ -392,9 +372,9 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     def talk_email(cls, helpdesks):
         for helpdesk in helpdesks:
             if not helpdesk.email_from:
-                cls.raise_user_error('no_email_from')
+                raise UserError(gettext('helpdesk.msg_no_email_from'))
             if not helpdesk.message:
-                cls.raise_user_error('no_message')
+                raise UserError(gettext('helpdesk.msg_no_message'))
         cls.send_email(helpdesks)  # Send email
         cls._talk(helpdesks)
         cls.write(helpdesks, {'message': None})
@@ -418,13 +398,13 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             if not server:
                 server = SMTP.get_smtp_server_from_model('helpdesk')
             if not server:
-                cls.raise_user_error('no_server_smtp')
+                raise UserError(gettext('helpdesk.msg_no_server_smtp'))
 
             from_ = server.smtp_email
             if not helpdesk.email_from:
-                cls.raise_user_error('no_email_from')
+                raise UserError(gettext('searching.msg_no_email_from'))
             if not helpdesk.message:
-                cls.raise_user_error('no_message')
+                raise UserError(gettext('searching.msg_no_message'))
             recipients = []
             emails = helpdesk.email_from.replace(' ', '').replace(',', ';')
             emails = emails.split(';')
@@ -437,11 +417,12 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
             if CHECK_EMAIL:
                 for recipient in recipients:
                     if not emailvalid.check_email(recipient):
-                        cls.raise_user_error('no_from_valid')
+                        raise UserError(gettext('helpdesk.msg_no_from_valid'))
+
                 if cc_addresses:
                     for cc_address in cc_addresses:
                         if not emailvalid.check_email(cc_address):
-                            cls.raise_user_error('no_recepients_valid')
+                            raise UserError(gettext('helpdesk.msg_no_recepients_valid'))
 
             if helpdesk.add_attachments:
                 msg = MIMEMultipart()
@@ -496,7 +477,7 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     @ModelView.button
     @Workflow.transition('done')
     def done(cls, helpdesks):
-        keyword = cls.raise_user_error('closed', raise_exception=False)
+        keyword = gettext('helpdesk.closed')
         cls._log(helpdesks, keyword)
         cls.write(helpdesks, {'closed_date': datetime.now()})
 
@@ -505,12 +486,13 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     @Workflow.transition('open')
     def open(cls, helpdesks):
         User = Pool().get('res.user')
-        keyword = cls.raise_user_error('opened', raise_exception=False)
+        keyword = gettext('helpdesk.opened')
         for helpdesk in helpdesks:
             if not helpdesk.employee:
                 employee = User(Transaction().user).employee
                 if not employee:
-                    cls.raise_user_error('no_user')
+                    raise UserError(gettext('searching.msg_no_user'))
+
                 cls.write([helpdesk], {'employee': employee})
         cls._log(helpdesks, keyword)
 
@@ -518,14 +500,14 @@ class Helpdesk(Workflow, ModelSQL, ModelView):
     @ModelView.button
     @Workflow.transition('pending')
     def pending(cls, helpdesks):
-        keyword = cls.raise_user_error('pending', raise_exception=False)
+        keyword = gettext('searching.pending')
         cls._log(helpdesks, keyword)
 
     @classmethod
     @ModelView.button
     @Workflow.transition('draft')
     def draft(cls, helpdesks):
-        keyword = cls.raise_user_error('drafted', raise_exception=False)
+        keyword = gettext('searching.drafted')
         cls._log(helpdesks, keyword)
 
     @classmethod

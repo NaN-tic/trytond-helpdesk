@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data grouped="1">
+        <record model="ir.message" id="msg_no_email_from">
+            <field name="text">You must put a party email to use this action!</field>
+        </record>
+        <record model="ir.message" id="msg_no_user">
+            <field name="text">You must define a responsible user for this helpdesk in order to use this action!</field>
+        </record>
+        <record model="ir.message" id="msg_no_message">
+            <field name="text">Add a message before send an email or note!</field>
+        </record>
+        <record model="ir.message" id="msg_no_user_email">
+            <field name="text">No E-Mail ID Found for your Company address!</field>
+        </record>
+        <record model="ir.message" id="msg_no_from_valid">
+            <field name="text">Not valid from email!</field>
+        </record>
+        <record model="ir.message" id="msg_no_server_smtp">
+            <field name="text">Not found SMTP server. Configure an SMTP server related with Helpdesk!</field>
+        </record>
+        <record model="ir.message" id="msg_no_recepients_valid">
+            <field name="text">Not valid recepients email!</field>
+        </record>
+        <record model="ir.message" id="msg_smtp_error">
+            <field name="text">Wrong connection to SMTP server. Not send email.</field>
+        </record>
+        <record model="ir.message" id="msg_no_employee">
+            <field name="text">You must select a employee in yours user preferences!</field>
+        </record>
+        <record model="ir.message" id="send">
+            <field name="text">Send</field>
+        </record>
+        <record model="ir.message" id="opened">
+            <field name="text">Opened</field>
+        </record>
+        <record model="ir.message" id="pending">
+            <field name="text">Pending</field>
+        </record>
+        <record model="ir.message" id="drafted">
+            <field name="text">Drafted</field>
+        </record>
+        <record model="ir.message" id="closed">
+            <field name="text">Closed</field>
+        </record>
+    </data>
+</tryton>
